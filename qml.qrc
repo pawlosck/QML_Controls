@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>infinite_listview/infinite_listview.qml</file>
+    </qresource>
+</RCC>
