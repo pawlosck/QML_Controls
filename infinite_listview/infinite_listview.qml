@@ -4,8 +4,8 @@ import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.15
 import QtQml 2.12
 
-//Item
-Window
+Item
+//Window
 {
     width: 30
     height: 60
@@ -116,6 +116,7 @@ Window
 
         Component.onCompleted:
         {
+
         }
     }
 
@@ -160,6 +161,25 @@ Window
 
             index++
         }
+
+
+
+
+
+        var curr_index = 0
+        for (var i = listviewID.first_value ; i <= listviewID.last_value; i++)
+        {
+            console.log("WWW: " + i)
+            console.log("modelID.get(i).itemID: " + modelID.get(i).itemID)
+            if(modelID.get(i).itemID === 0)
+            {
+                listviewID.positionViewAtIndex(i-1, ListView.Center)
+            }
+        }
+
+
+
+
     }
 
     function numberOfElements(a, b)
