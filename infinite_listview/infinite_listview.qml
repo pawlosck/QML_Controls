@@ -126,15 +126,46 @@ Window
         listviewID.fill_length_value = fill_length
         listviewID.fill_sign_value = fill_value
 
+        var sum = numberOfElements(first, last)
+        var half1 = 0
+        var half2 = 0
+
+        var resultOfMod = sum % 2
+        if (resultOfMod === 0)
+        {
+            half1 = Math.floor(sum/2)
+        }
+        else
+        {
+            half1 = Math.floor(sum/2)
+            half2 = sum - half1
+        }
+
+
         modelID.clear()
 
-        var index = 0
-        for (var i = listviewID.first_value ; i <= listviewID.last_value; i++)
+        var index = listviewID.last_value - half1
+        for (var i = (listviewID.first_value) ; i <= listviewID.last_value; i++)
         {
-            modelID.append( {"itemID": index, "number": i.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
-            console.log(index + " : " + i)
+            console.log("index: " + index + " : i: " + i + " : listviewID.first_value: " + listviewID.first_value)
+            if ( index <= listviewID.last_value)
+            {
+                modelID.append( {"itemID": index, "number": index.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
+            }
+            else
+            {
+                index = listviewID.first_value
+                modelID.append( {"itemID": index, "number": index.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
+            }
+
             index++
         }
+    }
+
+    function numberOfElements(a, b)
+    {
+        //Zwraca ilosc elementow, niezaleznie, czy pierwsza, lub ostatnia liczba jest dodatnia, lub ujemna
+        return Math.abs(a-b) + 1
     }
 }
 
