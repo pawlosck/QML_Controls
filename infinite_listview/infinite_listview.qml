@@ -115,6 +115,8 @@ Window
         listviewID.fill_length_value = fill_length
         listviewID.fill_sign_value = fill_value
 
+        modelID.clear()
+
         var index = 0
         for (var i = listviewID.first_value ; i <= listviewID.last_value; i++)
         {
