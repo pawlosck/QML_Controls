@@ -17,5 +17,8 @@ Window
         object_infinite.visible = true
         object_infinite.setValues(5, 111, 3)
         object_infinite.setStartIndex(0)
+
+        object_infinite.x=50
+        object_infinite.y=50
     }
 }

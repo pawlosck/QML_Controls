@@ -1,13 +1,13 @@
-import QtQuick 2.0
+import QtQuick 2.3
 import QtQuick.Window 2.15
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.15
 import QtQml 2.12
 
-//Item
-Window
+Item
+//Window
 {
-    width: 100
+    width: 30
     height: 60
     ListModel
     {
@@ -47,6 +47,8 @@ Window
         width: 30
         height: 60
 
+        clip: true
+
         preferredHighlightBegin: 20
         preferredHighlightEnd: 40
         highlightRangeMode: ListView.StrictlyEnforceRange
@@ -66,6 +68,16 @@ Window
             color: "transparent"
             border.width: 1
         }
+
+//        Rectangle
+//        {
+//            x: 0
+//            y: 0
+//            width: parent.width
+//            height: parent.height
+//            color: "transparent"
+//            border.width: 2
+//        }
 
         MouseArea
         {
