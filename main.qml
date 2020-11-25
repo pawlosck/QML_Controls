@@ -14,11 +14,11 @@ Window
 
     Component.onCompleted:
     {
+
+
         object_infinite.visible = true
 //        object_infinite.setValues(5, 20, 3)
         object_infinite.setValues()
-//        object_infinite.setStartIndex(8)
-
 
         object_infinite.x=50
         object_infinite.y=50

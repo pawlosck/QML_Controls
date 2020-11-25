@@ -49,6 +49,11 @@ Window
     {
         id: listviewID
 
+        property var first_value: 0
+        property var last_value: 99
+        property var fill_length_value: 2
+        property var fill_sign_value: '0'
+
         width: parent.width
         height: parent.height
 
@@ -97,22 +102,26 @@ Window
         {
         }
 
-    }
-
-    function setValues(first=0, last=59, fill_number=2, fill_value='0')
-    {
-        var index = 0
-        for (var i = first; i <= last; i++)
+        onAtYEndChanged:
         {
-            modelID.append( {"itemID": index, "number": i.toString().padStart(fill_number, fill_value)} )
-            console.log(index + " : " + i)
-            index++
+
         }
     }
 
-    function setStartIndex(startIndex=0)
+    function setValues(first = 0, last = 59, fill_length = 2, fill_value = '0')
     {
-        listviewID.positionViewAtIndex(startIndex, ListView.Beginning)
+        listviewID.first_value = first
+        listviewID.last_value = last
+        listviewID.fill_length_value = fill_length
+        listviewID.fill_sign_value = fill_value
+
+        var index = 0
+        for (var i = listviewID.first_value ; i <= listviewID.last_value; i++)
+        {
+            modelID.append( {"itemID": index, "number": i.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
+            console.log(index + " : " + i)
+            index++
+        }
     }
 }
 
