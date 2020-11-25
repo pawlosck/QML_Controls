@@ -93,10 +93,15 @@ Item
                 {
                     console.log("W DOL 1->2")
                     console.log(listviewID.currentIndex)
+                    var curr_index_tmp = listviewID.currentIndex
                     if(listviewID.currentIndex > (modelID.count/2))
                     {
                         modelID.move(0, modelID.count - 1, 1)
-//                        listviewID.currentIndex = modelID.count - 1
+                        modelID.move(0, modelID.count - 1, 1)
+                        modelID.move(0, modelID.count - 1, 1)
+                        modelID.move(0, modelID.count - 1, 1)
+                        modelID.move(0, modelID.count - 1, 1)
+                        listviewID.currentIndex = curr_index_tmp-5
                     }
                     listviewID.incrementCurrentIndex()
                 }
@@ -104,10 +109,15 @@ Item
                 {
                     console.log("W GORE 2->1")
                     console.log(listviewID.currentIndex)
+                    var curr_index_tmp = listviewID.currentIndex
                     if(listviewID.currentIndex < (modelID.count/2))
                     {
                         modelID.move(modelID.count - 1, 0, 1)
-//                        listviewID.currentIndex = 0
+                        modelID.move(modelID.count - 1, 0, 1)
+                        modelID.move(modelID.count - 1, 0, 1)
+                        modelID.move(modelID.count - 1, 0, 1)
+                        modelID.move(modelID.count - 1, 0, 1)
+                        listviewID.currentIndex = curr_index_tmp+5
                     }
                     listviewID.decrementCurrentIndex()
                 }
@@ -166,7 +176,7 @@ Item
 
 
 
-        var curr_index = 0
+//        var curr_index = 0
         for (var i = listviewID.first_value ; i <= listviewID.last_value; i++)
         {
             console.log("WWW: " + i)
