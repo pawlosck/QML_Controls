@@ -178,9 +178,9 @@ Item
             console.log("modelID.get(index).itemID: " + modelID.get(index).itemID)
             console.log("listviewID.last_value: " + listviewID.last_value)
             console.log("listviewID.first_value: " + listviewID.first_value)
-            if(modelID.get(index).itemID === 1000)
+            if(modelID.get(index).itemID === 1050)
             {
-                listviewID.positionViewAtIndex(index-2, ListView.Center)//Czemu to nie ustawia item w centrumWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+                    listviewID.positionViewAtIndex(index, ListView.Center)
             }
         }
     }
