@@ -15,7 +15,7 @@ Window
 
     Button
     {
-        x: 200
+        x: 300
         y:200
         width: 100
         height: 50
@@ -26,23 +26,24 @@ Window
     {
         x: 0
         y: 0
-        from: -999
-        to: 999
+        from: -10000
+        to: 10000
         id: a
-        value: 0
+        value: 980
 
 //        onValueChanged: console.log(diff(a.value, b.value))
-        onValueChanged: console.log(Math.floor(a.value/2))
+//        onValueChanged: console.log(Math.floor(a.value/2))
+        onValueChanged: object_infinite.setValues(a.value, b.value, 4)
     }
 
     SpinBox
     {
         x: 150
         y: 0
-        from: -999
-        to: 999
+        from: -10000
+        to: 10000
         id: b
-        value: 0
+        value: 1020
 
         onValueChanged: console.log(diff(a.value, b.value))
     }
@@ -57,11 +58,14 @@ Window
 
 
         object_infinite.visible = true
-//        object_infinite.setValues(5, 20, 3)
-        object_infinite.setValues()
+        object_infinite.setValues(2000, 2099, 4)
+//        object_infinite.setValues()
 
-        object_infinite.x=50
-        object_infinite.y=50
+        object_infinite.x=150
+        object_infinite.y=150
+
+        object_infinite.width=40
+        object_infinite.height=90
 
 
 
