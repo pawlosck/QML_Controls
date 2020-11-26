@@ -99,9 +99,9 @@ Item
                         modelID.move(0, modelID.count - 1, 1)
                         modelID.move(0, modelID.count - 1, 1)
                         modelID.move(0, modelID.count - 1, 1)
-                        modelID.move(0, modelID.count - 1, 1)
-                        modelID.move(0, modelID.count - 1, 1)
-                        listviewID.currentIndex = curr_index_tmp-5
+//                        modelID.move(0, modelID.count - 1, 1)
+//                        modelID.move(0, modelID.count - 1, 1)
+                        listviewID.currentIndex = curr_index_tmp-3
                     }
                     listviewID.incrementCurrentIndex()
                 }
@@ -115,9 +115,9 @@ Item
                         modelID.move(modelID.count - 1, 0, 1)
                         modelID.move(modelID.count - 1, 0, 1)
                         modelID.move(modelID.count - 1, 0, 1)
-                        modelID.move(modelID.count - 1, 0, 1)
-                        modelID.move(modelID.count - 1, 0, 1)
-                        listviewID.currentIndex = curr_index_tmp+5
+//                        modelID.move(modelID.count - 1, 0, 1)
+//                        modelID.move(modelID.count - 1, 0, 1)
+                        listviewID.currentIndex = curr_index_tmp+3
                     }
                     listviewID.decrementCurrentIndex()
                 }
@@ -172,24 +172,17 @@ Item
             index++
         }
 
-
-
-
-
-//        var curr_index = 0
-        for (var i = listviewID.first_value ; i <= listviewID.last_value; i++)
+        for (var i = listviewID.first_value, index = 0 ; i <= listviewID.last_value; i++, index++)
         {
-            console.log("WWW: " + i)
-            console.log("modelID.get(i).itemID: " + modelID.get(i).itemID)
-            if(modelID.get(i).itemID === 0)
+            console.log("index: " + index)
+            console.log("modelID.get(index).itemID: " + modelID.get(index).itemID)
+            console.log("listviewID.last_value: " + listviewID.last_value)
+            console.log("listviewID.first_value: " + listviewID.first_value)
+            if(modelID.get(index).itemID === 1000)
             {
-                listviewID.positionViewAtIndex(i-1, ListView.Center)
+                listviewID.positionViewAtIndex(index-2, ListView.Center)//Czemu to nie ustawia item w centrumWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
             }
         }
-
-
-
-
     }
 
     function numberOfElements(a, b)
