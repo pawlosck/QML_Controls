@@ -47,6 +47,18 @@ Item
 
     ListView
     {
+        onCurrentItemChanged:
+        {
+            if(listviewID.currentIndex < (modelID.count/2))
+            {
+                modelID.move(modelID.count - 1, 0, 1)
+            }
+
+            if(listviewID.currentIndex > (modelID.count/2))
+            {
+                modelID.move(0, modelID.count - 1, 1)
+            }
+        }
 
         id: listviewID
 
@@ -94,30 +106,20 @@ Item
                     console.log("W DOL 1->2")
                     console.log(listviewID.currentIndex)
                     var curr_index_tmp = listviewID.currentIndex
-                    if(listviewID.currentIndex > (modelID.count/2))
+                    if(listviewID.currentIndex < (modelID.count/2))
                     {
-                        modelID.move(0, modelID.count - 1, 1)
-                        modelID.move(0, modelID.count - 1, 1)
-                        modelID.move(0, modelID.count - 1, 1)
-//                        modelID.move(0, modelID.count - 1, 1)
-//                        modelID.move(0, modelID.count - 1, 1)
-                        listviewID.currentIndex = curr_index_tmp-3
+                        modelID.move(modelID.count - 1, 0, 1)
                     }
+
                     listviewID.incrementCurrentIndex()
                 }
                 else if (wheel.angleDelta.y > 0)
                 {
                     console.log("W GORE 2->1")
                     console.log(listviewID.currentIndex)
-                    var curr_index_tmp = listviewID.currentIndex
-                    if(listviewID.currentIndex < (modelID.count/2))
+                    if(listviewID.currentIndex > (modelID.count/2))
                     {
-                        modelID.move(modelID.count - 1, 0, 1)
-                        modelID.move(modelID.count - 1, 0, 1)
-                        modelID.move(modelID.count - 1, 0, 1)
-//                        modelID.move(modelID.count - 1, 0, 1)
-//                        modelID.move(modelID.count - 1, 0, 1)
-                        listviewID.currentIndex = curr_index_tmp+3
+                        modelID.move(0, modelID.count - 1, 1)
                     }
                     listviewID.decrementCurrentIndex()
                 }
@@ -174,13 +176,10 @@ Item
 
         for (var i = listviewID.first_value, index = 0 ; i <= listviewID.last_value; i++, index++)
         {
-            console.log("index: " + index)
-            console.log("modelID.get(index).itemID: " + modelID.get(index).itemID)
-            console.log("listviewID.last_value: " + listviewID.last_value)
-            console.log("listviewID.first_value: " + listviewID.first_value)
-            if(modelID.get(index).itemID === 1050)
+            if(modelID.get(index).itemID === 50)
             {
-                    listviewID.positionViewAtIndex(index, ListView.Center)
+                listviewID.positionViewAtIndex(index-2, ListView.Center)
+                break
             }
         }
     }
