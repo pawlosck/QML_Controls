@@ -10,7 +10,7 @@ Window
     visible: true
     title: qsTr("Hello World")
 
-    property var component_infinite: Qt.createComponent("infinite_listview/infinite_listview.qml")
+    property var component_infinite: Qt.createComponent("qrc:/controls/infinite_listview/infinite_listview.qml")
     property var object_infinite: component_infinite.createObject(mainWindow)
 
     Button
@@ -19,7 +19,10 @@ Window
         y:200
         width: 100
         height: 50
-//        onClicked: object_infinite.
+        onClicked:
+        {
+            object_infinite.getValue()
+        }
     }
 
     SpinBox
@@ -29,11 +32,12 @@ Window
         from: -10000
         to: 10000
         id: a
-        value: 980
+        value: 0
+        editable: true
 
 //        onValueChanged: console.log(diff(a.value, b.value))
 //        onValueChanged: console.log(Math.floor(a.value/2))
-        onValueChanged: object_infinite.setValues(a.value, b.value, 4)
+        onValueChanged: object_infinite.setValues(Number(a.value), Number(b.value), 1)
     }
 
     SpinBox
@@ -43,9 +47,10 @@ Window
         from: -10000
         to: 10000
         id: b
-        value: 1020
+        value: 59
+        editable: true
 
-        onValueChanged: console.log(diff(a.value, b.value))
+        onValueChanged: object_infinite.setValues(Number(a.value), Number(b.value), 1)
     }
 
     function diff(a,b)
@@ -58,14 +63,14 @@ Window
 
 
         object_infinite.visible = true
-        object_infinite.setValues(2000, 2099, 4)
+        object_infinite.setValues(-20, 59, 1)
 //        object_infinite.setValues()
 
         object_infinite.x=150
         object_infinite.y=150
 
-        object_infinite.width=40
-        object_infinite.height=90
+        object_infinite.width=120
+        object_infinite.height=270
 
 
 
