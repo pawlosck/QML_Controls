@@ -7,6 +7,7 @@ import QtQml 2.12
 Item
 //Window
 {
+
     width: 30
     height: 60
     ListModel
@@ -99,31 +100,42 @@ Item
         {
             anchors.fill: parent
             onWheel:
-            {
-                console.log( listviewID.currentIndex )
-                if (wheel.angleDelta.y < 0)
-                {
-                    console.log("W DOL 1->2")
-                    console.log(listviewID.currentIndex)
-                    var curr_index_tmp = listviewID.currentIndex
-                    if(listviewID.currentIndex < (modelID.count/2))
-                    {
-                        modelID.move(modelID.count - 1, 0, 1)
-                    }
+                        {
+                            console.log( listviewID.currentIndex )
+                            if (wheel.angleDelta.y < 0)
+                            {
+                                console.log("W DOL 1->2")
+                                console.log(listviewID.currentIndex)
+                                var curr_index_tmp = listviewID.currentIndex
+                                if(listviewID.currentIndex > (modelID.count/2))
+                                {
+                                    modelID.move(0, modelID.count - 1, 1)
+                                    modelID.move(0, modelID.count - 1, 1)
+                                    modelID.move(0, modelID.count - 1, 1)
+            //                        modelID.move(0, modelID.count - 1, 1)
+            //                        modelID.move(0, modelID.count - 1, 1)
+                                    listviewID.currentIndex = curr_index_tmp-3
+                                }
+                                listviewID.incrementCurrentIndex()
+                            }
+                            else if (wheel.angleDelta.y > 0)
+                            {
+                                console.log("W GORE 2->1")
+                                console.log(listviewID.currentIndex)
+                                var curr_index_tmp = listviewID.currentIndex
+                                if(listviewID.currentIndex < (modelID.count/2))
+                                {
+                                    modelID.move(modelID.count - 1, 0, 1)
+                                    modelID.move(modelID.count - 1, 0, 1)
+                                    modelID.move(modelID.count - 1, 0, 1)
+            //                        modelID.move(modelID.count - 1, 0, 1)
+            //                        modelID.move(modelID.count - 1, 0, 1)
+                                    listviewID.currentIndex = curr_index_tmp+3
+                                }
+                                listviewID.decrementCurrentIndex()
+                            }
+                        }
 
-                    listviewID.incrementCurrentIndex()
-                }
-                else if (wheel.angleDelta.y > 0)
-                {
-                    console.log("W GORE 2->1")
-                    console.log(listviewID.currentIndex)
-                    if(listviewID.currentIndex > (modelID.count/2))
-                    {
-                        modelID.move(0, modelID.count - 1, 1)
-                    }
-                    listviewID.decrementCurrentIndex()
-                }
-            }
         }
 
         Component.onCompleted:
@@ -153,7 +165,6 @@ Item
             half1 = Math.floor(sum/2)
             half2 = sum - half1
         }
-
 
         modelID.clear()
 
