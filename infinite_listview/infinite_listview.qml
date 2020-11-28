@@ -218,5 +218,10 @@ Item
         //Zwraca ilosc elementow, niezaleznie, czy pierwsza, lub ostatnia liczba jest dodatnia, lub ujemna
         return Math.abs(a-b) + 1
     }
+
+    function getValue()
+    {
+        return modelID.get(listviewID.currentIndex).number
+    }
 }
 
