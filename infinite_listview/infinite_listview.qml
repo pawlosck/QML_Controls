@@ -8,6 +8,8 @@ Item
 //Window
 {
 
+    id: mainListView
+
     width: 30
     height: 60
     ListModel
@@ -82,6 +84,8 @@ Item
         highlightMoveDuration: 1000
         highlightMoveVelocity: -1
 
+        property bool set_values_first_time: false
+
         model: modelID
         delegate: delegateID
 
@@ -140,18 +144,17 @@ Item
 
         Component.onCompleted:
         {
-
         }
     }
 
     function setValues(first = 0, last = 59, fill_length = 2, fill_value = '0')
     {
-        listviewID.first_value = first
-        listviewID.last_value = last
-        listviewID.fill_length_value = fill_length
+        listviewID.first_value = Number(first)
+        listviewID.last_value = Number(last)
+        listviewID.fill_length_value = Number(fill_length)
         listviewID.fill_sign_value = fill_value
 
-        var sum = numberOfElements(first, last)
+        var sum = numberOfElements(listviewID.first_value, listviewID.last_value)
         var half1 = 0
         var half2 = 0
 
@@ -167,32 +170,41 @@ Item
         }
 
         modelID.clear()
-
-        var index = listviewID.last_value - half1
-        for (var i = (listviewID.first_value) ; i <= listviewID.last_value; i++)
+        for (var index_tmp = listviewID.last_value - half1, i = listviewID.first_value ; i <= listviewID.last_value; i++, index_tmp++)
         {
-            console.log("index: " + index + " : i: " + i + " : listviewID.first_value: " + listviewID.first_value)
-            if ( index <= listviewID.last_value)
+            console.log("index_tmp: " + index_tmp + " : i: " + i + " : listviewID.first_value: " + listviewID.first_value)
+            if ( index_tmp <= listviewID.last_value)
             {
-                modelID.append( {"itemID": index, "number": index.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
+                modelID.append( {"itemID": index_tmp, "number": index_tmp.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
             }
             else
             {
-                index = listviewID.first_value
-                modelID.append( {"itemID": index, "number": index.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
+                index_tmp = listviewID.first_value
+                modelID.append( {"itemID": index_tmp, "number": index_tmp.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
             }
-
-            index++
         }
 
-        for (var i = listviewID.first_value, index = 0 ; i <= listviewID.last_value; i++, index++)
+        listviewID.currentIndex = -1    //Z tym ustaiwniem, poprawnie sie ustawia na 0, ale uzywajac scroola, przeskakuje w dzziwne miejsce
+        for (var i = listviewID.first_value, index_tmp = 0 ; i <= listviewID.last_value; i++, index_tmp++)
         {
-            if(modelID.get(index).itemID === 50)
+
+            if(modelID.get(index_tmp).itemID === listviewID.first_value)
             {
-                listviewID.positionViewAtIndex(index-2, ListView.Center)
+                listviewID.positionViewAtIndex(index_tmp, ListView.Center)
+                if(listviewID.set_values_first_time === false)
+                {
+                    listviewID.currentIndex = index_tmp-2
+                }
+                else
+                {
+                    listviewID.currentIndex = index_tmp
+                }
+
+
                 break
             }
         }
+        listviewID.set_values_first_time = true
     }
 
     function numberOfElements(a, b)
