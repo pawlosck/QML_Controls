@@ -99,7 +99,20 @@ Item
             width: parent.width
             height: parent.height/3
             color: "transparent"
+            border.width: 0
+        }
+
+        Rectangle
+        {
+            anchors.fill: parent
             border.width: 1
+            gradient: Gradient
+            {
+                GradientStop { position: 0.0; color: "gray" }
+                GradientStop { position: 0.33; color: "transparent" }
+                GradientStop { position: 0.66; color: "transparent" }
+                GradientStop { position: 1.0; color: "gray" }
+            }
         }
 
         MouseArea
