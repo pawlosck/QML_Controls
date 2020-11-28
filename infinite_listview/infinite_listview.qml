@@ -52,6 +52,7 @@ Item
     {
         onCurrentItemChanged:
         {
+            //Kod odpowiedzialny za nieskonczone przewijanie przy uzyciu myszy (wcisniety lewy przycisk myszy) i dotyku na Androidzie. Kod przenosi elemeny z konca listy na poczatek i odwrotnie
             if(listviewID.currentIndex < (modelID.count/2))
             {
                 modelID.move(modelID.count - 1, 0, 1)
@@ -91,6 +92,7 @@ Item
 
         Rectangle
         {
+            //Obramowanie srodkowej czesci listy
             id: current_index_border
             x: 0
             y: parent.height/3
@@ -104,41 +106,42 @@ Item
         {
             anchors.fill: parent
             onWheel:
-                        {
-                            console.log( listviewID.currentIndex )
-                            if (wheel.angleDelta.y < 0)
-                            {
-                                console.log("W DOL 1->2")
-                                console.log(listviewID.currentIndex)
-                                var curr_index_tmp = listviewID.currentIndex
-                                if(listviewID.currentIndex > (modelID.count/2))
-                                {
-                                    modelID.move(0, modelID.count - 1, 1)
-                                    modelID.move(0, modelID.count - 1, 1)
-                                    modelID.move(0, modelID.count - 1, 1)
-            //                        modelID.move(0, modelID.count - 1, 1)
-            //                        modelID.move(0, modelID.count - 1, 1)
-                                    listviewID.currentIndex = curr_index_tmp-3
-                                }
-                                listviewID.incrementCurrentIndex()
-                            }
-                            else if (wheel.angleDelta.y > 0)
-                            {
-                                console.log("W GORE 2->1")
-                                console.log(listviewID.currentIndex)
-                                var curr_index_tmp = listviewID.currentIndex
-                                if(listviewID.currentIndex < (modelID.count/2))
-                                {
-                                    modelID.move(modelID.count - 1, 0, 1)
-                                    modelID.move(modelID.count - 1, 0, 1)
-                                    modelID.move(modelID.count - 1, 0, 1)
-            //                        modelID.move(modelID.count - 1, 0, 1)
-            //                        modelID.move(modelID.count - 1, 0, 1)
-                                    listviewID.currentIndex = curr_index_tmp+3
-                                }
-                                listviewID.decrementCurrentIndex()
-                            }
-                        }
+            {
+                //Kod odpowiadajacy za nieskoczone przewijanie przy uzyciu scroola myszy
+                console.log( listviewID.currentIndex )
+                if (wheel.angleDelta.y < 0)
+                {
+                    console.log("W DOL 1->2")
+                    console.log(listviewID.currentIndex)
+                    var curr_index_tmp = listviewID.currentIndex
+                    if(listviewID.currentIndex > (modelID.count/2))
+                    {
+                        modelID.move(0, modelID.count - 1, 1)
+                        modelID.move(0, modelID.count - 1, 1)
+                        modelID.move(0, modelID.count - 1, 1)
+//                        modelID.move(0, modelID.count - 1, 1)
+//                        modelID.move(0, modelID.count - 1, 1)
+                        listviewID.currentIndex = curr_index_tmp-3
+                    }
+                    listviewID.incrementCurrentIndex()
+                }
+                else if (wheel.angleDelta.y > 0)
+                {
+                    console.log("W GORE 2->1")
+                    console.log(listviewID.currentIndex)
+                    var curr_index_tmp = listviewID.currentIndex
+                    if(listviewID.currentIndex < (modelID.count/2))
+                    {
+                        modelID.move(modelID.count - 1, 0, 1)
+                        modelID.move(modelID.count - 1, 0, 1)
+                        modelID.move(modelID.count - 1, 0, 1)
+//                        modelID.move(modelID.count - 1, 0, 1)
+//                        modelID.move(modelID.count - 1, 0, 1)
+                        listviewID.currentIndex = curr_index_tmp+3
+                    }
+                    listviewID.decrementCurrentIndex()
+                }
+            }
 
         }
 
@@ -154,6 +157,7 @@ Item
         listviewID.fill_length_value = Number(fill_length)
         listviewID.fill_sign_value = fill_value
 
+        //Obliczenia zwiazane z okresleniem srodkowego elementu listy, ktory ma byc na poczatku listy
         var sum = numberOfElements(listviewID.first_value, listviewID.last_value)
         var half1 = 0
         var half2 = 0
@@ -170,6 +174,7 @@ Item
         }
 
         modelID.clear()
+        //Dodawania elementow do listy
         for (var index_tmp = listviewID.last_value - half1, i = listviewID.first_value ; i <= listviewID.last_value; i++, index_tmp++)
         {
             console.log("index_tmp: " + index_tmp + " : i: " + i + " : listviewID.first_value: " + listviewID.first_value)
@@ -179,6 +184,7 @@ Item
             }
             else
             {
+                //Jak dodawany element dojdzie do wartosci listviewID.last_value, to licznik sie resetuje, zeby lista zaczynala sie na srodku, na srodku byla wartosc 0 i ostatni element takze byl na srodku listy
                 index_tmp = listviewID.first_value
                 modelID.append( {"itemID": index_tmp, "number": index_tmp.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
             }
@@ -193,14 +199,14 @@ Item
                 listviewID.positionViewAtIndex(index_tmp, ListView.Center)
                 if(listviewID.set_values_first_time === false)
                 {
+                    //Uzywane, gdy ustawia sie liste po razz pierwszy po uruchomieniu
                     listviewID.currentIndex = index_tmp-2
                 }
                 else
                 {
+                    //Uzywane, gdy uzywa sie funkcji set_values po raz drugi i kolejny podczas dzialania programu. Nie wiem, od czego to zalezy.
                     listviewID.currentIndex = index_tmp
                 }
-
-
                 break
             }
         }
