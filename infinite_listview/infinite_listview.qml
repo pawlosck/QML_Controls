@@ -157,6 +157,21 @@ Item
         listviewID.fill_length_value = Number(fill_length)
         listviewID.fill_sign_value = fill_value
 
+        if (listviewID.first_value > listviewID.last_value)
+        {
+            //Pierwsza wartosc musi byc wieksza, niz zdruga
+            modelID.clear()
+            modelID.append( {"itemID": 0, "number": "ERROR: 1"} )
+            return -1
+        }
+        else if ( numberOfElements( listviewID.first_value, listviewID.last_value) <= 3)
+        {
+            //Ilosc elementow miedzy pierwszym, a ostatnim elementem musi byc min 3 elementy, zeby wszystkie pola byly zajete w liscie
+            modelID.clear()
+            modelID.append( {"itemID": 0, "number": "ERROR: 2"} )
+            return -2
+        }
+
         //Obliczenia zwiazane z okresleniem srodkowego elementu listy, ktory ma byc na poczatku listy
         var sum = numberOfElements(listviewID.first_value, listviewID.last_value)
         var half1 = 0
@@ -211,6 +226,8 @@ Item
             }
         }
         listviewID.set_values_first_time = true
+
+        return 0
     }
 
     function numberOfElements(a, b)
