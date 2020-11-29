@@ -233,18 +233,20 @@ Item
             if(modelID.get(index_tmp).itemID === listviewID.first_value)
             {
                 listviewID.positionViewAtIndex(index_tmp, ListView.Center)
-                if(listviewID.set_values_first_time === false)
-                {
-                    //Uzywane, gdy ustawia sie liste po razz pierwszy po uruchomieniu
-                    listviewID.currentIndex = index_tmp-2
-                    console.log("FALSE: listviewID.currentIndex: " + listviewID.currentIndex)
-                }
-                else
-                {
-                    //Uzywane, gdy uzywa sie funkcji set_values po raz drugi i kolejny podczas dzialania programu. Nie wiem, od czego to zalezy.
-                    listviewID.currentIndex = index_tmp
-                    console.log("TRUE: listviewID.currentIndex: " + listviewID.currentIndex)
-                }
+                listviewID.currentIndex = index_tmp
+
+//                if(listviewID.set_values_first_time === false)
+//                {
+//                    //Uzywane, gdy ustawia sie liste po razz pierwszy po uruchomieniu
+//                    listviewID.currentIndex = index_tmp-2
+//                    console.log("FALSE: listviewID.currentIndex: " + listviewID.currentIndex)
+//                }
+//                else
+//                {
+//                    //Uzywane, gdy uzywa sie funkcji set_values po raz drugi i kolejny podczas dzialania programu. Nie wiem, od czego to zalezy.
+//                    listviewID.currentIndex = index_tmp
+//                    console.log("TRUE: listviewID.currentIndex: " + listviewID.currentIndex)
+//                }
                 break
             }
         }

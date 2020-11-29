@@ -63,49 +63,46 @@ Window
 
     Component.onCompleted:
     {
-        object_infinite.visible = true
-        object_infinite.setValues(0, 23, 2)
-//        object_infinite.setValues()
-
-//        object_infinite.setGradientColor("transparent")
-        object_infinite.setBorderSize(1)
-
-        object_infinite.x=150
+        object_infinite.x=50
         object_infinite.y=150
 
         object_infinite.width=120
         object_infinite.height=270
 
+        object_infinite.setBorderSize(1)
+
+        object_infinite.setValues(0, 23, 2)
+
+        object_infinite.visible = true
+
+
 ////////////////////////////////////////////////////////////
 
-
-        object_infinite2.visible = true
-
-        object_infinite2.x=270
+        object_infinite2.x=170
         object_infinite2.y=150
 
         object_infinite2.width=120
         object_infinite2.height=270
 
-        object_infinite2.setValues(0, 23, 2)
-//        object_infinite2.setValues(0, 59, 2)
-
         object_infinite2.setBorderSize(1)
+
+        object_infinite2.setValues(2000, 2020, 2)
+
+        object_infinite2.visible = true
 
 ////////////////////////////////////////////////////////////
 
-        object_infinite3.visible = true
-
-        object_infinite3.x=390
+        object_infinite3.x=290
         object_infinite3.y=150
 
         object_infinite3.width=120
         object_infinite3.height=270
 
-        object_infinite3.setValues(0, 23, 2)
-//        object_infinite3.setValues(0, 59, 2)
-
         object_infinite3.setBorderSize(1)
+
+        object_infinite3.setValues(0, 59, 2)
+
+        object_infinite3.visible = true
 
     }
 }
