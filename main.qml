@@ -66,6 +66,8 @@ Window
         object_infinite.setValues(-20, 59, 1)
 //        object_infinite.setValues()
 
+//        object_infinite.setGradientColor("transparent")
+
         object_infinite.x=150
         object_infinite.y=150
 

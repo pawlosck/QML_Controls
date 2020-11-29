@@ -71,6 +71,8 @@ Item
         property var fill_length_value: 2
         property var fill_sign_value: '0'
 
+        property var gradient_color: 'gray'
+
         width: parent.width
         height: parent.height
 
@@ -108,10 +110,10 @@ Item
             border.width: 1
             gradient: Gradient
             {
-                GradientStop { position: 0.0; color: "gray" }
+                GradientStop { position: 0.0; color: listviewID.gradient_color }
                 GradientStop { position: 0.33; color: "transparent" }
                 GradientStop { position: 0.66; color: "transparent" }
-                GradientStop { position: 1.0; color: "gray" }
+                GradientStop { position: 1.0; color: listviewID.gradient_color }
             }
         }
 
@@ -252,6 +254,11 @@ Item
     function getValue()
     {
         return modelID.get(listviewID.currentIndex).number
+    }
+
+    function setGradientColor(color = 'gray')
+    {
+        listviewID.gradient_color = color
     }
 }
 
