@@ -17,14 +17,14 @@ Window
 
     Button
     {
-        x: 300
-        y:200
+        x: 50
+        y:75
         width: 100
         height: 50
-        visible: false
+        visible: true
         onClicked:
         {
-            object_infinite.getValue()
+            object_infinite.setFontColor("blue")
         }
     }
 
@@ -87,6 +87,8 @@ Window
 
         object_infinite.setGradientColor("gray")
 
+        object_infinite.setFontColor("black")
+
         object_infinite.setValues(0, 23, 2)
 
         object_infinite.visible = true
@@ -104,6 +106,8 @@ Window
 
         object_infinite2.setGradientColor("gray")
 
+        object_infinite2.setFontColor("black")
+
         object_infinite2.setValues(0, 59, 2)
 
         object_infinite2.visible = true
@@ -119,6 +123,8 @@ Window
         object_infinite3.setBorderSize(1)
 
         object_infinite3.setGradientColor("gray")
+
+        object_infinite3.setFontColor("black")
 
         object_infinite3.setValues(0, 59, 2)
 

@@ -12,6 +12,9 @@ Item
 
     width: 30
     height: 60
+
+    property color font_color: "black"
+
     ListModel
     {
         id: modelID
@@ -44,6 +47,7 @@ Item
 
                 font.pixelSize: parent.height
                 fontSizeMode: Text.Fit
+                color: font_color
             }
         }
     }
@@ -289,6 +293,11 @@ Item
                 }
             }
         }
+    }
+
+    function setFontColor(font_color = "black")
+    {
+        mainListView.font_color = font_color
     }
 }
 
