@@ -56,6 +56,20 @@ Window
         onValueChanged: object_infinite.setValues(Number(a.value), Number(b.value), 2)
     }
 
+    SpinBox
+    {
+        x: 300
+        y: 0
+        from: -10000
+        to: 10000
+        id: c
+        value: 0
+        editable: true
+
+        onValueChanged: object_infinite3.setValue(value)
+//        onValueModified: object_infinite3.setValue(value)
+    }
+
     function diff(a,b)
     {
         return Math.abs(a-b) + 1
@@ -100,7 +114,7 @@ Window
 
         object_infinite3.setBorderSize(1)
 
-        object_infinite3.setValues(0, 59, 2)
+        object_infinite3.setValues(-50, 100, 1)
 
         object_infinite3.visible = true
 
