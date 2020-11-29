@@ -72,6 +72,7 @@ Item
         property var fill_sign_value: '0'
 
         property var gradient_color: 'gray'
+        property var border_size: 1
 
         width: parent.width
         height: parent.height
@@ -107,7 +108,7 @@ Item
         Rectangle
         {
             anchors.fill: parent
-            border.width: 1
+            border.width: listviewID.border_size
             gradient: Gradient
             {
                 GradientStop { position: 0.0; color: listviewID.gradient_color }
@@ -259,6 +260,11 @@ Item
     function setGradientColor(color = 'gray')
     {
         listviewID.gradient_color = color
+    }
+
+    function setBorderSize(size = 1)
+    {
+        listviewID.border_size = size
     }
 }
 
