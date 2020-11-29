@@ -228,7 +228,6 @@ Item
         listviewID.currentIndex = -1    //Z tym ustaiwniem, poprawnie sie ustawia na 0, ale uzywajac scroola, przeskakuje w dzziwne miejsce
         for (var i = listviewID.first_value, index_tmp = 0 ; i <= listviewID.last_value; i++, index_tmp++)
         {
-
             console.log("modelID.get(listviewID.currentIndex).itemID: " + modelID.get(index_tmp).itemID)
             if(modelID.get(index_tmp).itemID === listviewID.first_value)
             {
@@ -274,6 +273,22 @@ Item
     function setBorderSize(size = 1)
     {
         listviewID.border_size = size
+    }
+
+    function setValue(value = 0)
+    {
+        if(value >= listviewID.first_value && value <= listviewID.last_value)
+        {
+            for (var i = listviewID.first_value, index_tmp = 0 ; i <= listviewID.last_value; i++, index_tmp++)
+            {
+                console.log(modelID.get(index_tmp).itemID)
+                if(modelID.get(index_tmp).itemID === Number(value))
+                {
+                    listviewID.currentIndex = index_tmp
+                    break
+                }
+            }
+        }
     }
 }
 
