@@ -85,6 +85,8 @@ Window
 
         object_infinite.setBorderSize(1)
 
+        object_infinite.setGradientColor("gray")
+
         object_infinite.setValues(0, 23, 2)
 
         object_infinite.visible = true
@@ -100,7 +102,9 @@ Window
 
         object_infinite2.setBorderSize(1)
 
-        object_infinite2.setValues(2000, 2020, 2)
+        object_infinite2.setGradientColor("gray")
+
+        object_infinite2.setValues(0, 59, 2)
 
         object_infinite2.visible = true
 
@@ -114,9 +118,36 @@ Window
 
         object_infinite3.setBorderSize(1)
 
-        object_infinite3.setValues(-50, 100, 1)
+        object_infinite3.setGradientColor("gray")
+
+        object_infinite3.setValues(0, 59, 2)
 
         object_infinite3.visible = true
 
     }
+
+    function zegar()
+    {
+        console.log("egar")
+        var d = new Date();
+        var h = d.getHours();
+        var m = d.getMinutes();
+        var s = d.getSeconds();
+
+        mainWindow.object_infinite.setValue(h)
+        mainWindow.object_infinite2.setValue(m)
+        mainWindow.object_infinite3.setValue(s)
+    }
+
+    Timer
+    {
+        id: timerUpdateListView
+        interval: 1000; running: true; repeat: true; triggeredOnStart: true
+        onTriggered: mainWindow.zegar()
+    }
+
+
+
+
+
 }
