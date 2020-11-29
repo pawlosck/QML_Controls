@@ -13,6 +13,7 @@ Window
     property var component_infinite: Qt.createComponent("qrc:/controls/infinite_listview/infinite_listview.qml")
     property var object_infinite: component_infinite.createObject(mainWindow)
     property var object_infinite2: component_infinite.createObject(mainWindow)
+    property var object_infinite3: component_infinite.createObject(mainWindow)
 
     Button
     {
@@ -20,6 +21,7 @@ Window
         y:200
         width: 100
         height: 50
+        visible: false
         onClicked:
         {
             object_infinite.getValue()
@@ -38,7 +40,7 @@ Window
 
 //        onValueChanged: console.log(diff(a.value, b.value))
 //        onValueChanged: console.log(Math.floor(a.value/2))
-        onValueChanged: object_infinite.setValues(Number(a.value), Number(b.value), 1)
+        onValueChanged: object_infinite.setValues(Number(a.value), Number(b.value), 2)
     }
 
     SpinBox
@@ -51,7 +53,7 @@ Window
         value: 59
         editable: true
 
-        onValueChanged: object_infinite.setValues(Number(a.value), Number(b.value), 1)
+        onValueChanged: object_infinite.setValues(Number(a.value), Number(b.value), 2)
     }
 
     function diff(a,b)
@@ -61,14 +63,12 @@ Window
 
     Component.onCompleted:
     {
-
-
         object_infinite.visible = true
         object_infinite.setValues(0, 23, 2)
 //        object_infinite.setValues()
 
 //        object_infinite.setGradientColor("transparent")
-        object_infinite.setBorderSize(0)
+        object_infinite.setBorderSize(1)
 
         object_infinite.x=150
         object_infinite.y=150
@@ -76,11 +76,7 @@ Window
         object_infinite.width=120
         object_infinite.height=270
 
-
-
-
-
-
+////////////////////////////////////////////////////////////
 
 
         object_infinite2.visible = true
@@ -91,11 +87,25 @@ Window
         object_infinite2.width=120
         object_infinite2.height=270
 
-        object_infinite2.setValues(0, 59, 2)
+        object_infinite2.setValues(0, 23, 2)
+//        object_infinite2.setValues(0, 59, 2)
 
-        object_infinite2.setBorderSize(0)
+        object_infinite2.setBorderSize(1)
 
+////////////////////////////////////////////////////////////
 
+        object_infinite3.visible = true
+
+        object_infinite3.x=390
+        object_infinite3.y=150
+
+        object_infinite3.width=120
+        object_infinite3.height=270
+
+        object_infinite3.setValues(0, 23, 2)
+//        object_infinite3.setValues(0, 59, 2)
+
+        object_infinite3.setBorderSize(1)
 
     }
 }
