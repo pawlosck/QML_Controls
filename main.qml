@@ -93,7 +93,7 @@ Window
 
         object_infinite.visible = true
 
-        object_infinite3.signal_item_changed.connect(function(itemID, number, current_index) {console.log("Funkcja main: " + itemID + " : " + number + " : " + current_index)})
+        object_infinite3.signal_value_changed.connect(function(itemID, number, current_index) {console.log("Funkcja main: " + itemID + " : " + number + " : " + current_index)})
 
 
 ////////////////////////////////////////////////////////////

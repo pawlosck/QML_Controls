@@ -15,7 +15,7 @@ Item
 
     property color font_color: "black"
 
-    signal signal_item_changed(int itemID, string number, int current_index)
+    signal signal_value_changed(int itemID, string number, int current_index)
 
     ListModel
     {
@@ -150,7 +150,7 @@ Item
 
         onCurrentItemChanged:
         {
-            mainListView.signal_item_changed(modelID.get(listviewID.currentIndex).itemID, modelID.get(listviewID.currentIndex).number, listviewID.currentIndex)
+            mainListView.signal_value_changed(modelID.get(listviewID.currentIndex).itemID, modelID.get(listviewID.currentIndex).number, listviewID.currentIndex)
 
             //Kod odpowiedzialny za nieskonczone przewijanie przy uzyciu myszy (wcisniety lewy przycisk myszy) i dotyku na Androidzie. Kod przenosi elemeny z konca listy na poczatek i odwrotnie
             if(listviewID.currentIndex < (modelID.count/2))
@@ -280,7 +280,7 @@ Item
         mainListView.font_color = font_color
     }
 
-    onSignal_item_changed:
+    onSignal_value_changed:
     {
         console.log(itemID + " : " + number + " : " + current_index)
     }
