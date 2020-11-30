@@ -54,20 +54,6 @@ Item
 
     ListView
     {
-        onCurrentItemChanged:
-        {
-            //Kod odpowiedzialny za nieskonczone przewijanie przy uzyciu myszy (wcisniety lewy przycisk myszy) i dotyku na Androidzie. Kod przenosi elemeny z konca listy na poczatek i odwrotnie
-            if(listviewID.currentIndex < (modelID.count/2))
-            {
-                modelID.move(modelID.count - 1, 0, 1)
-            }
-
-            if(listviewID.currentIndex > (modelID.count/2))
-            {
-                modelID.move(0, modelID.count - 1, 1)
-            }
-        }
-
         id: listviewID
 
         property var first_value: 0
@@ -158,6 +144,20 @@ Item
                 }
             }
 
+        }
+
+        onCurrentItemChanged:
+        {
+            //Kod odpowiedzialny za nieskonczone przewijanie przy uzyciu myszy (wcisniety lewy przycisk myszy) i dotyku na Androidzie. Kod przenosi elemeny z konca listy na poczatek i odwrotnie
+            if(listviewID.currentIndex < (modelID.count/2))
+            {
+                modelID.move(modelID.count - 1, 0, 1)
+            }
+
+            if(listviewID.currentIndex > (modelID.count/2))
+            {
+                modelID.move(0, modelID.count - 1, 1)
+            }
         }
 
         Component.onCompleted:
