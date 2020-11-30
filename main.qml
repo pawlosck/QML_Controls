@@ -93,6 +93,8 @@ Window
 
         object_infinite.visible = true
 
+        object_infinite3.signal_item_changed.connect(function(itemID, number, current_index) {console.log("Funkcja main: " + itemID + " : " + number + " : " + current_index)})
+
 
 ////////////////////////////////////////////////////////////
 
@@ -149,7 +151,7 @@ Window
     {
         id: timerUpdateListView
         interval: 1000; running: true; repeat: true; triggeredOnStart: true
-        onTriggered: mainWindow.zegar()
+//        onTriggered: mainWindow.zegar()
     }
 
 
