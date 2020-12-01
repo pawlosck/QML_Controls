@@ -11,7 +11,7 @@ Window
     title: qsTr("Hello World")
     color: "yellow"
 
-    property var component_infinite: Qt.createComponent("qrc:/controls/infinite_listview/infinite_listview.qml")
+    property var component_infinite: Qt.createComponent("qrc:/controls/infinite_listview.qml")
     property var object_infinite: component_infinite.createObject(mainWindow)
     property var object_infinite2: component_infinite.createObject(mainWindow)
     property var object_infinite3: component_infinite.createObject(mainWindow)
