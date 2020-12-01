@@ -82,7 +82,7 @@ Window
         object_infinite.y=150
 
         object_infinite.width=120
-        object_infinite.height=360
+        object_infinite.height=120
 
         object_infinite.setBorderSize(1)
 
@@ -91,7 +91,7 @@ Window
         object_infinite.setFontColor("black")
 
         object_infinite.setValues(0, 23, 2)
-        object_infinite.setNumberOfVisibleElements(3)
+        object_infinite.setNumberOfVisibleElements(1)
 
         object_infinite.visible = true
 
@@ -102,7 +102,7 @@ Window
         object_infinite2.y=150
 
         object_infinite2.width=120
-        object_infinite2.height=360
+        object_infinite2.height=120
         object_infinite2.setBorderSize(1)
 
         object_infinite2.setGradientColor("gray")
@@ -110,7 +110,7 @@ Window
         object_infinite2.setFontColor("black")
 
         object_infinite2.setValues(0, 59, 2)
-        object_infinite2.setNumberOfVisibleElements(3)
+        object_infinite2.setNumberOfVisibleElements(1)
 
         object_infinite2.visible = true
 
@@ -120,7 +120,7 @@ Window
         object_infinite3.y=150
 
         object_infinite3.width=120
-        object_infinite3.height=360
+        object_infinite3.height=120
 
         object_infinite3.setBorderSize(1)
 
@@ -130,7 +130,7 @@ Window
 
         object_infinite3.setValues(0, 59, 2)
 
-        object_infinite3.setNumberOfVisibleElements(3)
+        object_infinite3.setNumberOfVisibleElements(1)
 //        object_infinite3.setNumberOfVisibleElements(3)
 
         object_infinite3.visible = true
