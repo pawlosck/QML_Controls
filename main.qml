@@ -6,9 +6,10 @@ Window
 {
     id: mainWindow
     width: 640
-    height: 480
+    height: 900
     visible: true
     title: qsTr("Hello World")
+    color: "yellow"
 
     property var component_infinite: Qt.createComponent("qrc:/controls/infinite_listview/infinite_listview.qml")
     property var object_infinite: component_infinite.createObject(mainWindow)
@@ -63,7 +64,7 @@ Window
         from: -10000
         to: 10000
         id: c
-        value: 0
+        value: 30
         editable: true
 
         onValueChanged: object_infinite3.setValue(value)
@@ -81,7 +82,7 @@ Window
         object_infinite.y=150
 
         object_infinite.width=120
-        object_infinite.height=270
+        object_infinite.height=360
 
         object_infinite.setBorderSize(1)
 
@@ -90,10 +91,9 @@ Window
         object_infinite.setFontColor("black")
 
         object_infinite.setValues(0, 23, 2)
+        object_infinite.setNumberOfVisibleElements(3)
 
         object_infinite.visible = true
-
-        object_infinite3.signal_value_changed.connect(function(itemID, number, current_index) {console.log("Funkcja main: " + itemID + " : " + number + " : " + current_index)})
 
 
 ////////////////////////////////////////////////////////////
@@ -102,8 +102,7 @@ Window
         object_infinite2.y=150
 
         object_infinite2.width=120
-        object_infinite2.height=270
-
+        object_infinite2.height=360
         object_infinite2.setBorderSize(1)
 
         object_infinite2.setGradientColor("gray")
@@ -111,6 +110,7 @@ Window
         object_infinite2.setFontColor("black")
 
         object_infinite2.setValues(0, 59, 2)
+        object_infinite2.setNumberOfVisibleElements(3)
 
         object_infinite2.visible = true
 
@@ -120,7 +120,7 @@ Window
         object_infinite3.y=150
 
         object_infinite3.width=120
-        object_infinite3.height=270
+        object_infinite3.height=360
 
         object_infinite3.setBorderSize(1)
 
@@ -130,7 +130,12 @@ Window
 
         object_infinite3.setValues(0, 59, 2)
 
+        object_infinite3.setNumberOfVisibleElements(3)
+//        object_infinite3.setNumberOfVisibleElements(3)
+
         object_infinite3.visible = true
+
+        object_infinite3.signal_value_changed.connect(function(itemID, number, current_index) {console.log("Funkcja main: " + itemID + " : " + number + " : " + current_index)})
 
     }
 
@@ -151,7 +156,7 @@ Window
     {
         id: timerUpdateListView
         interval: 1000; running: true; repeat: true; triggeredOnStart: true
-//        onTriggered: mainWindow.zegar()
+        onTriggered: mainWindow.zegar()
     }
 
 

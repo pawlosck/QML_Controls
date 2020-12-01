@@ -15,6 +15,10 @@ Item
 
     property color font_color: "black"
 
+    property int delegate_height
+    property var preferredHighlightBegin
+    property var preferredHighlightEnd
+
     signal signal_value_changed(int itemID, string number, int current_index)
 
     ListModel
@@ -34,7 +38,8 @@ Item
         Rectangle
         {
             id: itemDelegate
-            height: listviewID.height/3
+//            height: listviewID.height/3     //Tu zmienic na "listviewID.height", zeby byl jeden wiersz, listviewID.height/3 - 3 wiersze, listviewID.height/7 - 7 wierszy (currentitem nie jest na srodku)
+            height: delegate_height
             width: listviewID.width
             x: 0
             y: 0
@@ -73,8 +78,8 @@ Item
         clip: true
 
         //Ustawia ilosc widocznego listview na poczatku i na koncu. To jest dodatkowa przestrzen widoczna. PRzydaje sie, zeby elementy plynnie pojawialy sie i znikaly Dane podawane w pikselach.
-        preferredHighlightBegin: parent.height/3
-        preferredHighlightEnd: parent.height/3
+        preferredHighlightBegin: mainListView.preferredHighlightBegin
+        preferredHighlightEnd: mainListView.preferredHighlightEnd
         highlightRangeMode: ListView.StrictlyEnforceRange
 
         highlightMoveDuration: 1000
@@ -265,7 +270,6 @@ Item
         {
             for (var i = listviewID.first_value, index_tmp = 0 ; i <= listviewID.last_value; i++, index_tmp++)
             {
-                console.log(modelID.get(index_tmp).itemID)
                 if(modelID.get(index_tmp).itemID === Number(value))
                 {
                     listviewID.currentIndex = index_tmp
@@ -278,6 +282,23 @@ Item
     function setFontColor(font_color = "black")
     {
         mainListView.font_color = font_color
+    }
+
+    function setNumberOfVisibleElements(numberOfVisibleElements = 3)
+    {
+        if(numberOfVisibleElements === 3)
+        {
+            mainListView.delegate_height = Qt.binding(() => listviewID.height/3)
+            mainListView.preferredHighlightBegin = Qt.binding(() => mainListView.height/3)
+            mainListView.preferredHighlightEnd = Qt.binding(() => mainListView.height/3)
+        }
+        else if(numberOfVisibleElements === 1)
+        {
+            mainListView.delegate_height = Qt.binding(() => listviewID.height/1)
+            mainListView.preferredHighlightBegin = Qt.binding(() => mainListView.height/1)
+            mainListView.preferredHighlightEnd = Qt.binding(() => mainListView.height/3)
+        }
+
     }
 
     onSignal_value_changed:
