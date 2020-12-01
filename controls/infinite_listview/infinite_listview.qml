@@ -15,6 +15,10 @@ Item
 
     property color font_color: "black"
 
+    //Zmienne uzywane w funkcji "setNumberOfVisibleElements".
+    //Nie dało się dostac bezposrednio do parametrow obiektu dziecka,
+    //wiec trzeba bylo stworzyc te zmienne i dopiero te zmienne mozna bylo przypisac do parametrow obiektu dziecka.
+    //Modyfikujac te parametry, modyfikuje sie parametry znajdujace sie w obiekcie dziecka
     property int delegate_height
     property var preferredHighlightBegin
     property var preferredHighlightEnd
@@ -286,6 +290,7 @@ Item
 
     function setNumberOfVisibleElements(numberOfVisibleElements = 3)
     {
+        //Funkcja umozliwiajacy wybor ilosci wierszy w liscie. Dostepne sa opcje 1 i 3 wiersze
         if(numberOfVisibleElements === 3)
         {
             mainListView.delegate_height = Qt.binding(() => listviewID.height/3)
