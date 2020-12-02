@@ -7,11 +7,12 @@ import QtQml 2.12
 Item
 //Window
 {
-
+    x: 0
+    y: 0
     id: mainListView
 
-    width: 30
-    height: 60
+    width: parent.width/3
+    height: parent.height
 
     property color font_color: "black"
 
@@ -19,9 +20,9 @@ Item
     //Nie dało się dostac bezposrednio do parametrow obiektu dziecka,
     //wiec trzeba bylo stworzyc te zmienne i dopiero te zmienne mozna bylo przypisac do parametrow obiektu dziecka.
     //Modyfikujac te parametry, modyfikuje sie parametry znajdujace sie w obiekcie dziecka
-    property int delegate_height
-    property var preferredHighlightBegin
-    property var preferredHighlightEnd
+    property int delegate_height: listviewID.height/3
+    property var preferredHighlightBegin: mainListView.height/3
+    property var preferredHighlightEnd: mainListView.height/3
 
     signal signal_value_changed(int itemID, string number, int current_index)
 
@@ -304,6 +305,18 @@ Item
             mainListView.preferredHighlightEnd = Qt.binding(() => mainListView.height/3)
         }
 
+    }
+
+    function setSize(width, height)
+    {
+        mainListView.width = Qt.binding(() => width)
+        mainListView.height = Qt.binding(() => height)
+    }
+
+    function setPosition(x, y)
+    {
+        mainListView.x = Qt.binding(() => x)
+        mainListView.y = Qt.binding(() => y)
     }
 
     onSignal_value_changed:
