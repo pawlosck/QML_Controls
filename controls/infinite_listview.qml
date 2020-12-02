@@ -68,6 +68,8 @@ Item
     {
         id: listviewID
 
+        snapMode: ListView.SnapToItem
+
         property var first_value: 0
         property var last_value: 99
         property var fill_length_value: 2
@@ -86,6 +88,7 @@ Item
         preferredHighlightBegin: mainListView.preferredHighlightBegin
         preferredHighlightEnd: mainListView.preferredHighlightEnd
         highlightRangeMode: ListView.StrictlyEnforceRange
+        cacheBuffer: height
 
         highlightMoveDuration: 1000
         highlightMoveVelocity: -1
@@ -301,10 +304,9 @@ Item
         else if(numberOfVisibleElements === 1)
         {
             mainListView.delegate_height = Qt.binding(() => listviewID.height/1)
-            mainListView.preferredHighlightBegin = Qt.binding(() => mainListView.height/1)
-            mainListView.preferredHighlightEnd = Qt.binding(() => mainListView.height/3)
+            mainListView.preferredHighlightBegin = Qt.binding(() => 0)
+            mainListView.preferredHighlightEnd = Qt.binding(() => mainListView.height)
         }
-
     }
 
     function setSize(width, height)
