@@ -117,13 +117,21 @@ Item
 
     function setSize(width, height)
     {
-        main_multi_listview.width = width
-        main_multi_listview.height = height
+        main_multi_listview.width = Qt.binding(() => width)
+        main_multi_listview.height = Qt.binding(() => height)
     }
 
     function setPosition(x, y)
     {
-        main_multi_listview.x = x
-        main_multi_listview.y = y
+        main_multi_listview.x = Qt.binding(() => x)
+        main_multi_listview.y = Qt.binding(() => y)
+    }
+
+    function setNumberOfVisibleElements(numberOfVisibleElements = 3)
+    {
+        //Funkcja umozliwiajacy wybor ilosci wierszy w liscie. Dostepne sa opcje 1 i 3 wiersze
+        object_value1.setNumberOfVisibleElements(numberOfVisibleElements)
+        object_value2.setNumberOfVisibleElements(numberOfVisibleElements)
+        object_value3.setNumberOfVisibleElements(numberOfVisibleElements)
     }
 }
