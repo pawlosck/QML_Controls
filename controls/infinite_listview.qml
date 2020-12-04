@@ -88,7 +88,7 @@ Item
         preferredHighlightBegin: mainListView.preferredHighlightBegin
         preferredHighlightEnd: mainListView.preferredHighlightEnd
         highlightRangeMode: ListView.StrictlyEnforceRange
-        cacheBuffer: height
+        cacheBuffer: delegate_height*2
 
         highlightMoveDuration: 1000
         highlightMoveVelocity: -1
@@ -285,6 +285,12 @@ Item
                 }
             }
         }
+    }
+
+    function setCustomValue(value = ":")
+    {
+        modelID.clear()
+        modelID.append( {"itemID": 0, "number": value} )
     }
 
     function setFontColor(font_color = "black")
