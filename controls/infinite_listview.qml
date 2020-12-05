@@ -165,25 +165,38 @@ Item
         {
             mainListView.signal_value_changed(modelID.get(listviewID.currentIndex).itemID, modelID.get(listviewID.currentIndex).number, listviewID.currentIndex)
 
-            //Kod odpowiedzialny za nieskonczone przewijanie przy uzyciu myszy (wcisniety lewy przycisk myszy) i dotyku na Androidzie. Kod przenosi elemeny z konca listy na poczatek i odwrotnie
-            if(listviewID.currentIndex < (modelID.count/2))
-            {
-                modelID.move(modelID.count - 1, 0, 1)
-            }
+        }
 
-            if(listviewID.currentIndex > (modelID.count/2))
+        onContentYChanged:
+        {
+            if(listviewID.set_values_first_time === true)
             {
-                modelID.move(0, modelID.count - 1, 1)
+                var current_index_at_top = indexAt(1, contentY)
+
+                if(current_index_at_top < (modelID.count/2))
+                {
+                    modelID.move(modelID.count - 1, 0, 1)
+                }
+
+                var current_index_at_bottom = indexAt(1, (contentY+height)-1)
+
+                if(current_index_at_bottom > (modelID.count/2))
+                {
+                    modelID.move(0, modelID.count - 1, 1)
+                }
             }
         }
 
         Component.onCompleted:
         {
         }
+
     }
 
     function setValues(first = 0, last = 59, fill_length = 2, fill_value = '0')
     {
+        listviewID.set_values_first_time = false
+
         listviewID.first_value = Number(first)
         listviewID.last_value = Number(last)
         listviewID.fill_length_value = Number(fill_length)
@@ -221,18 +234,24 @@ Item
         }
 
         modelID.clear()
-        //Dodawania elementow do listy
-        for (var index_tmp = listviewID.last_value - half1, i = listviewID.first_value ; i <= listviewID.last_value; i++, index_tmp++)
+
+        //Ile razy ma byc powtorzona lista.
+        //Dodanie wiekszej ilosci razy tej samej listy skutkuje plynniejszym przewijaniem listy przy mniejszej ilosci elementow w liscie
+        for(var how_many_times_lists_repeated = 0 ; how_many_times_lists_repeated < 3 ; how_many_times_lists_repeated++)
         {
-            if ( index_tmp <= listviewID.last_value)
+            //Dodawania elementow do listy
+            for (var index_tmp = listviewID.last_value - half1, i = listviewID.first_value ; i <= listviewID.last_value; i++, index_tmp++)
             {
-                modelID.append( {"itemID": index_tmp, "number": index_tmp.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
-            }
-            else
-            {
-                //Jak dodawany element dojdzie do wartosci listviewID.last_value, to licznik sie resetuje, zeby lista zaczynala sie na srodku, na srodku byla wartosc 0 i ostatni element takze byl na srodku listy
-                index_tmp = listviewID.first_value
-                modelID.append( {"itemID": index_tmp, "number": index_tmp.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
+                if ( index_tmp <= listviewID.last_value)
+                {
+                    modelID.append( {"itemID": index_tmp, "number": index_tmp.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
+                }
+                else
+                {
+                    //Jak dodawany element dojdzie do wartosci listviewID.last_value, to licznik sie resetuje, zeby lista zaczynala sie na srodku, na srodku byla wartosc 0 i ostatni element takze byl na srodku listy
+                    index_tmp = listviewID.first_value
+                    modelID.append( {"itemID": index_tmp, "number": index_tmp.toString().padStart(listviewID.fill_length_value, listviewID.fill_sign_value)} )
+                }
             }
         }
 
