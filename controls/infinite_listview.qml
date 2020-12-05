@@ -78,6 +78,8 @@ Item
         property var gradient_color: 'gray'
         property var border_size: 1
 
+        property int how_many_times_lists_repeated: 10      //Ile razy ma byc zduplikowana lista z elementami listy. uzywane do plynniejszego przewijania list, ktore zawieraja mala ailosc elementow.
+
         width: parent.width
         height: parent.height
 
@@ -128,6 +130,7 @@ Item
             anchors.fill: parent
             onWheel:
             {
+                listviewID.set_values_first_time = false
                 //Kod odpowiadajacy za nieskoczone przewijanie przy uzyciu scroola myszy
                 if (wheel.angleDelta.y < 0)
                 {
@@ -135,11 +138,11 @@ Item
                     if(listviewID.currentIndex > (modelID.count/2))
                     {
                         modelID.move(0, modelID.count - 1, 1)
-                        modelID.move(0, modelID.count - 1, 1)
-                        modelID.move(0, modelID.count - 1, 1)
 //                        modelID.move(0, modelID.count - 1, 1)
 //                        modelID.move(0, modelID.count - 1, 1)
-                        listviewID.currentIndex = curr_index_tmp-3
+//                        modelID.move(0, modelID.count - 1, 1)
+//                        modelID.move(0, modelID.count - 1, 1)
+                        listviewID.currentIndex = curr_index_tmp-1
                     }
                     listviewID.incrementCurrentIndex()
                 }
@@ -149,14 +152,15 @@ Item
                     if(listviewID.currentIndex < (modelID.count/2))
                     {
                         modelID.move(modelID.count - 1, 0, 1)
-                        modelID.move(modelID.count - 1, 0, 1)
-                        modelID.move(modelID.count - 1, 0, 1)
 //                        modelID.move(modelID.count - 1, 0, 1)
 //                        modelID.move(modelID.count - 1, 0, 1)
-                        listviewID.currentIndex = curr_index_tmp+3
+//                        modelID.move(modelID.count - 1, 0, 1)
+//                        modelID.move(modelID.count - 1, 0, 1)
+                        listviewID.currentIndex = curr_index_tmp+1
                     }
                     listviewID.decrementCurrentIndex()
                 }
+                listviewID.set_values_first_time = true
             }
 
         }
@@ -165,23 +169,23 @@ Item
         {
             mainListView.signal_value_changed(modelID.get(listviewID.currentIndex).itemID, modelID.get(listviewID.currentIndex).number, listviewID.currentIndex)
 
-        }
-
-        onContentYChanged:
-        {
             if(listviewID.set_values_first_time === true)
             {
                 var current_index_at_top = indexAt(1, contentY)
-
                 if(current_index_at_top < (modelID.count/2))
                 {
+                    modelID.move(modelID.count - 1, 0, 1)
+                    modelID.move(modelID.count - 1, 0, 1)
+                    modelID.move(modelID.count - 1, 0, 1)
                     modelID.move(modelID.count - 1, 0, 1)
                 }
 
                 var current_index_at_bottom = indexAt(1, (contentY+height)-1)
-
                 if(current_index_at_bottom > (modelID.count/2))
                 {
+                    modelID.move(0, modelID.count - 1, 1)
+                    modelID.move(0, modelID.count - 1, 1)
+                    modelID.move(0, modelID.count - 1, 1)
                     modelID.move(0, modelID.count - 1, 1)
                 }
             }
@@ -209,7 +213,7 @@ Item
             modelID.append( {"itemID": 0, "number": "ERROR: 1"} )
             return -1
         }
-        else if ( numberOfElements( listviewID.first_value, listviewID.last_value) <= 3)
+        else if ( numberOfElements( listviewID.first_value, listviewID.last_value) <= 2)
         {
             //Ilosc elementow miedzy pierwszym, a ostatnim elementem musi byc min 3 elementy, zeby wszystkie pola byly zajete w liscie
             modelID.clear()
@@ -237,7 +241,7 @@ Item
 
         //Ile razy ma byc powtorzona lista.
         //Dodanie wiekszej ilosci razy tej samej listy skutkuje plynniejszym przewijaniem listy przy mniejszej ilosci elementow w liscie
-        for(var how_many_times_lists_repeated = 0 ; how_many_times_lists_repeated < 3 ; how_many_times_lists_repeated++)
+        for(var how_many_times_lists_repeated_tmp = 0 ; how_many_times_lists_repeated_tmp < listviewID.how_many_times_lists_repeated ; how_many_times_lists_repeated_tmp++)
         {
             //Dodawania elementow do listy
             for (var index_tmp = listviewID.last_value - half1, i = listviewID.first_value ; i <= listviewID.last_value; i++, index_tmp++)
@@ -255,14 +259,26 @@ Item
             }
         }
 
+
+
+        var index_how_many_times_lists_repeated_half = 0
         listviewID.currentIndex = -1    //Z tym ustaiwniem, poprawnie sie ustawia na 0, ale uzywajac scroola, przeskakuje w dzziwne miejsce
-        for (var i = listviewID.first_value, index_tmp = 0 ; i <= listviewID.last_value; i++, index_tmp++)
+        for (var i = listviewID.first_value, index_tmp = 0 ; i <= listviewID.last_value+modelID.count; i++, index_tmp++)
         {
             if(modelID.get(index_tmp).itemID === listviewID.first_value)
             {
-                listviewID.positionViewAtIndex(index_tmp, ListView.Center)
-                listviewID.currentIndex = index_tmp
-                break
+                if(index_how_many_times_lists_repeated_half > listviewID.how_many_times_lists_repeated/2)
+//                {
+
+//                }
+//                else
+                {
+                    listviewID.positionViewAtIndex(index_tmp, ListView.Center)
+                    listviewID.currentIndex = index_tmp
+                    break
+                }
+                index_how_many_times_lists_repeated_half++
+
             }
         }
         listviewID.set_values_first_time = true
