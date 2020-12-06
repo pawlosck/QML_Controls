@@ -78,7 +78,7 @@ Item
         property var gradient_color: 'gray'
         property var border_size: 1
 
-        property int how_many_times_lists_repeated: 10      //Ile razy ma byc zduplikowana lista z elementami listy. uzywane do plynniejszego przewijania list, ktore zawieraja mala ailosc elementow.
+        property int how_many_times_lists_repeated: 3      //Ile razy ma byc zduplikowana lista z elementami listy. uzywane do plynniejszego przewijania list, ktore zawieraja mala ailosc elementow.
 
         width: parent.width
         height: parent.height
@@ -206,6 +206,32 @@ Item
         listviewID.fill_length_value = Number(fill_length)
         listviewID.fill_sign_value = fill_value
 
+        //Określenie, ile razy ma być zduplikowana lista. Jak jest mniej elementów w liście,
+        //to liczba musi być wyższa, bo przy szybszym przewijaniu, zdarzaało się, ze na liście było widać pierwszy, lub ostatni element listy,
+        //a czasami także tło, gdyż brakowało elementów na początku, lub końcu listy. Wartości dobrane są doświadczalnie.
+        //Zmienna how_many_times_lists_repeated wykorzystywana jest takze pod koniec funkcji setValues i trzeba na to zwracać uwagę, modyfikując ją
+        var number_of_elements = numberOfElements(listviewID.first_value, listviewID.last_value)
+        if ( number_of_elements <= 3 )
+        {
+            listviewID.how_many_times_lists_repeated = 10
+        }
+        else
+        if ( number_of_elements <= 10 )
+        {
+            listviewID.how_many_times_lists_repeated = 5
+        }
+        else
+        if ( number_of_elements <= 20 )
+        {
+            listviewID.how_many_times_lists_repeated = 3
+        }
+        else
+        {
+            listviewID.how_many_times_lists_repeated = 2
+        }
+
+        console.log("number_of_elements: " + number_of_elements)
+
         if (listviewID.first_value > listviewID.last_value)
         {
             //Pierwsza wartosc musi byc wieksza, niz zdruga
@@ -213,7 +239,7 @@ Item
             modelID.append( {"itemID": 0, "number": "ERROR: 1"} )
             return -1
         }
-        else if ( numberOfElements( listviewID.first_value, listviewID.last_value) <= 2)
+        else if ( numberOfElements( listviewID.first_value, listviewID.last_value) <= 1)
         {
             //Ilosc elementow miedzy pierwszym, a ostatnim elementem musi byc min 3 elementy, zeby wszystkie pola byly zajete w liscie
             modelID.clear()
@@ -261,24 +287,19 @@ Item
 
 
 
-        var index_how_many_times_lists_repeated_half = 0
+        var index_how_many_times_lists_repeated = 0
         listviewID.currentIndex = -1    //Z tym ustaiwniem, poprawnie sie ustawia na 0, ale uzywajac scroola, przeskakuje w dzziwne miejsce
         for (var i = listviewID.first_value, index_tmp = 0 ; i <= listviewID.last_value+modelID.count; i++, index_tmp++)
         {
             if(modelID.get(index_tmp).itemID === listviewID.first_value)
             {
-                if(index_how_many_times_lists_repeated_half > listviewID.how_many_times_lists_repeated/2)
-//                {
-
-//                }
-//                else
+                if(index_how_many_times_lists_repeated >= listviewID.how_many_times_lists_repeated/2)
                 {
                     listviewID.positionViewAtIndex(index_tmp, ListView.Center)
                     listviewID.currentIndex = index_tmp
                     break
                 }
-                index_how_many_times_lists_repeated_half++
-
+                index_how_many_times_lists_repeated++
             }
         }
         listviewID.set_values_first_time = true
