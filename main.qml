@@ -12,6 +12,7 @@ Window
     color: "yellow"
 
     property var component_value: Qt.createComponent("qrc:/controls/multi_infinite_listview.qml")
+//    property var component_value: Qt.createComponent("qrc:/controls/infinite_listview.qml")
     property var object_value: component_value.createObject(mainWindow)
 
     Button
@@ -37,6 +38,7 @@ Window
         value: 0
         editable: true
 
+//        onValueChanged: object_value.setSize(value*3, value)
 //        onValueChanged: console.log(diff(a.value, b.value))
 //        onValueChanged: console.log(Math.floor(a.value/2))
 //        onValueChanged: object_infinite.setValues(Number(a.value), Number(b.value), 2)
@@ -49,10 +51,10 @@ Window
         from: -10000
         to: 10000
         id: b
-        value: 59
+        value: 1
         editable: true
 
-//        onValueChanged: object_infinite.setValues(Number(a.value), Number(b.value), 2)
+        onValueChanged: object_value.setNumberOfVisibleElements(value)
     }
 
     SpinBox
@@ -76,20 +78,27 @@ Window
 
     Component.onCompleted:
     {
-//        object_value.setPosition(100,100)
-//        object_value.setSize(50,150)
-        object_value.x = 0
-        object_value.y = 100
-        object_value.width = 450
-        object_value.height = 450
+//        object_value.setPosition(200,200)
+//        object_value.setSize(150,450)
+//        object_value.x = 0
+//        object_value.y = 0
+//        object_value.width = 150
+//        object_value.height = 150
 
-//        object_value.setNumberOfVisibleElements(1)
+        object_value.setNumberOfVisibleElements(1)
+//        object_value.setNumberOfVisibleElements(3)            //////
 
-//        object_value.setPosition(200, 200)
-//        object_value.setSize(300, 300)
-        object_value.setValues(1, 0, 10, 2, '0')
-        object_value.setValues(2, 0, 20, 2, '0')
-        object_value.setValues(3, 0, 30, 2, '0')
+
+        object_value.setPosition(0, 0)
+//        object_value.setSize(Qt.binding(() => mainWindow.width), Qt.binding(() => mainWindow.height))
+        object_value.width = Qt.binding(() => width)
+        object_value.height = Qt.binding(() => height)
+
+        object_value.setValues(1, 0, 6, 2, '0')
+        object_value.setValues(2, 0, 6, 2, '0')
+        object_value.setValues(3, 0, 10, 2, '0')
+
+//        object_value.setValues(-5, 3, 1, '0')                  ////////
     }
 
 //    function zegar()
