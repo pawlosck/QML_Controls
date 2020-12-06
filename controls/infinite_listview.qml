@@ -90,7 +90,7 @@ Item
         preferredHighlightBegin: mainListView.preferredHighlightBegin
         preferredHighlightEnd: mainListView.preferredHighlightEnd
         highlightRangeMode: ListView.StrictlyEnforceRange
-        cacheBuffer: delegate_height*2
+//        cacheBuffer: delegate_height*2
 
         highlightMoveDuration: 1000
         highlightMoveVelocity: -1
@@ -167,10 +167,10 @@ Item
 
         onCurrentItemChanged:
         {
-            mainListView.signal_value_changed(modelID.get(listviewID.currentIndex).itemID, modelID.get(listviewID.currentIndex).number, listviewID.currentIndex)
-
             if(listviewID.set_values_first_time === true)
             {
+                mainListView.signal_value_changed(modelID.get(listviewID.currentIndex).itemID, modelID.get(listviewID.currentIndex).number, listviewID.currentIndex)
+
                 var current_index_at_top = indexAt(1, contentY)
                 if(current_index_at_top < (modelID.count/2))
                 {
