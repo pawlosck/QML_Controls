@@ -14,6 +14,8 @@ Item
     width: parent.width/3
     height: parent.height
 
+    property var object_name: "Object Name"
+
     property color font_color: "black"
 
     //Zmienne uzywane w funkcji "setNumberOfVisibleElements".
@@ -24,7 +26,19 @@ Item
     property var preferredHighlightBegin: mainListView.height/3
     property var preferredHighlightEnd: mainListView.height/3
 
+    property var animation_value
+    property var animation_height
+    property var animacja_running: true
+
     signal signal_value_changed(int itemID, string number, int current_index)
+
+    Connections
+    {
+        id: connection_signal_move_items
+        target: listviewID
+        function onCurrentItemChanged() {listviewID.updateListviewWhenItemChanged() }
+        enabled: true
+    }
 
     ListModel
     {
@@ -67,6 +81,18 @@ Item
     ListView
     {
         id: listviewID
+
+            SmoothedAnimation
+            {
+                id: animacja1
+                target: listviewID
+                easing.type: Easing.OutCubic
+                property: "contentY"
+                running: animacja_running
+                duration: animation_value * mainListView.animation_height
+                from: listviewID.contentY
+                to: listviewID.contentY + (mainListView.animation_value * mainListView.animation_height)
+            }
 
         snapMode: ListView.SnapToItem
 
@@ -165,7 +191,8 @@ Item
 
         }
 
-        onCurrentItemChanged:
+
+        function updateListviewWhenItemChanged()
         {
             if(listviewID.set_values_first_time === true)
             {
@@ -194,7 +221,6 @@ Item
         Component.onCompleted:
         {
         }
-
     }
 
     function setValues(first = 0, last = 59, fill_length = 2, fill_value = '0')
@@ -227,7 +253,7 @@ Item
         }
         else
         {
-            listviewID.how_many_times_lists_repeated = 2
+            listviewID.how_many_times_lists_repeated = 3
         }
 
         console.log("number_of_elements: " + number_of_elements)
@@ -332,14 +358,6 @@ Item
     {
         if(value >= listviewID.first_value && value <= listviewID.last_value)
         {
-            for (var i = listviewID.first_value, index_tmp = 0 ; i <= listviewID.last_value; i++, index_tmp++)
-            {
-                if(modelID.get(index_tmp).itemID === Number(value))
-                {
-                    listviewID.currentIndex = index_tmp
-                    break
-                }
-            }
         }
     }
 
@@ -385,7 +403,6 @@ Item
 
     onSignal_value_changed:
     {
-        console.log(itemID + " : " + number + " : " + current_index)
     }
 }
 
