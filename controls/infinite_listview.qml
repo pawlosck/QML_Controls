@@ -26,9 +26,9 @@ Item
     property var preferredHighlightBegin: mainListView.height/3
     property var preferredHighlightEnd: mainListView.height/3
 
-    property var animation_value
-    property var animation_height
-    property var animacja_running: true
+    property var animation_switch_item_value: 1
+    property var animation_switch_item_height: delegate_height
+    property var animation_switch_item_running: true
 
     signal signal_value_changed(int itemID, string number, int current_index)
 
@@ -84,14 +84,15 @@ Item
 
             SmoothedAnimation
             {
-                id: animacja1
+                id: animation_switch_item
                 target: listviewID
-                easing.type: Easing.OutCubic
+                easing.type: Easing.Linear
                 property: "contentY"
-                running: animacja_running
-                duration: animation_value * mainListView.animation_height
+                running: mainListView.animation_switch_item_running
+//                duration: mainListView.animation_switch_item_value * 1000
+                duration: 500
                 from: listviewID.contentY
-                to: listviewID.contentY + (mainListView.animation_value * mainListView.animation_height)
+                to: listviewID.contentY + (mainListView.animation_switch_item_value * mainListView.animation_switch_item_height)
             }
 
         snapMode: ListView.SnapToItem
@@ -330,6 +331,8 @@ Item
         }
         listviewID.set_values_first_time = true
 
+        console.log(mainListView.delegate_height + " : " + mainListView.height)
+
         return 0
     }
 
@@ -356,9 +359,57 @@ Item
 
     function setValue(value = 0)
     {
-        if(value >= listviewID.first_value && value <= listviewID.last_value)
+        var distance = 0
+
+        var current_value = modelID.get(listviewID.currentIndex).itemID
+
+
+        if(current_value === listviewID.last_value && value === listviewID.first_value)
         {
+            distance = 1
         }
+        else
+        if(value > current_value)
+        {
+            distance = value - current_value
+        }
+        else
+        if(value < current_value)
+        {
+//            var xx = value
+            for (var index = 0 ; index < listviewID.count ; index++)
+            {
+                if(value !== current_value)
+                {
+                    distance++
+                    if(current_value === listviewID.last_value)
+                    {
+                        current_value = listviewID.first_value
+                    }
+                    else
+                    {
+                        current_value++
+                    }
+
+                    console.log("if(value !== current_value): " + current_value + " : " + distance)
+                }
+                else
+                if(value === current_value)
+                {
+                    break
+                }
+            }
+        }
+        else
+        {
+            distance = 0
+        }
+
+
+        console.log("distance: " + distance)
+        mainListView.animation_switch_item_height = mainListView.delegate_height
+        mainListView.animation_switch_item_value = distance
+        mainListView.animation_switch_item_running = true
     }
 
     function setCustomValue(value = ":")
