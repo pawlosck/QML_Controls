@@ -86,11 +86,11 @@ Item
             {
                 id: animation_switch_item
                 target: listviewID
-                easing.type: Easing.Linear
+                easing.type: Easing.InOutQuart
                 property: "contentY"
                 running: mainListView.animation_switch_item_running
-//                duration: mainListView.animation_switch_item_value * 1000
-                duration: 500
+//                duration: mainListView.animation_switch_item_value * 200
+                duration: 1000
                 from: listviewID.contentY
                 to: listviewID.contentY + (mainListView.animation_switch_item_value * mainListView.animation_switch_item_height)
             }
@@ -359,6 +359,14 @@ Item
 
     function setValue(value = 0)
     {
+        //Jak probuje sie ustawic wartosc, zanim poprzednia animacja sie nie skonczyla, to zakoncz poprzednia animacje
+        if(animation_switch_item.running === true)
+        {
+            animation_switch_item.complete()
+            mainListView.animation_switch_item_running = false
+            listviewID.contentY = animation_switch_item.to
+        }
+
         var distance = 0
 
         var current_value = modelID.get(listviewID.currentIndex).itemID
