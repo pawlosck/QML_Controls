@@ -28,6 +28,10 @@ Item
         object_value2.parent = main_multi_listview
         object_value3.parent = main_multi_listview
 
+        object_value1.object_name = "object_value1"
+        object_value2.object_name = "object_value2"
+        object_value3.object_name = "object_value3"
+
         object_value1.width = Qt.binding(() => (width/3))
         object_value1.height = Qt.binding(() => height)
         object_value2.width = Qt.binding(() => width/3)
@@ -65,6 +69,22 @@ Item
         else if (element === 3)
         {
             object_value3.setValues(first, last, fill_length, fill_value)
+        }
+    }
+
+    function setValue(element, value)
+    {
+        if (element === 1)
+        {
+            object_value1.setValue(value)
+        }
+        else if (element === 2)
+        {
+            object_value2.setValue(value)
+        }
+        else if (element === 3)
+        {
+            object_value3.setValue(value)
         }
     }
 
