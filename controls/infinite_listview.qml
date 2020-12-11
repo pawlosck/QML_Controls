@@ -89,8 +89,7 @@ Item
                 easing.type: Easing.InOutQuart
                 property: "contentY"
                 running: mainListView.animation_switch_item_running
-//                duration: mainListView.animation_switch_item_value * 200
-                duration: 1000
+                duration: mainListView.animation_switch_item_value * 200
                 from: listviewID.contentY
                 to: listviewID.contentY + (mainListView.animation_switch_item_value * mainListView.animation_switch_item_height)
             }
@@ -359,12 +358,12 @@ Item
 
     function setValue(value = 0)
     {
-        //Jak probuje sie ustawic wartosc, zanim poprzednia animacja sie nie skonczyla, to zakoncz poprzednia animacje
+        //Jak probuje sie ustawic wartosc, zanim poprzednia animacja sie nie skonczyla, to zatrzymaj animacje, ustaw na najblizszy index i dalej probuj ustawic kolejna wartosc.
         if(animation_switch_item.running === true)
         {
-            animation_switch_item.complete()
-            mainListView.animation_switch_item_running = false
-            listviewID.contentY = animation_switch_item.to
+            animation_switch_item.stop()
+            var current_index = listviewID.indexAt(1, listviewID.contentY + delegate_height+1)
+            listviewID.positionViewAtIndex(current_index, ListView.Center)
         }
 
         var distance = 0
