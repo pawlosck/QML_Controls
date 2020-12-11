@@ -6,7 +6,7 @@ Window
 {
     id: mainWindow
     width: 300
-    height: 300
+    height: 100
     x: 100
     y: 100
     visible: true
