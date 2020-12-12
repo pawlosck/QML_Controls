@@ -202,7 +202,7 @@ Item
 
     function setBorderSize(size = 0)
     {
-        external_border.border = size
+        external_border.border.width = size
     }
 
     function setGradientColor(element, color = 'gray')
