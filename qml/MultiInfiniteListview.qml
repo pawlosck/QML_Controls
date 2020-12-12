@@ -9,7 +9,7 @@ Item
 {
     id: main_multi_listview
 
-    property var component_value: Qt.createComponent("qrc:/controls/infinite_listview.qml")
+    property var component_value: Qt.createComponent("InfiniteListview.qml")
     property var object_value1: component_value.createObject(mainWindow)
     property var object_value2: component_value.createObject(mainWindow)
     property var object_value3: component_value.createObject(mainWindow)
