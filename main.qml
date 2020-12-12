@@ -122,6 +122,13 @@ Window
         mainWindow.object_value.setValue(1, h)
         mainWindow.object_value.setValue(2, m)
         mainWindow.object_value.setValue(3, s)
+
+        var xx = mainWindow.object_value.getValue()
+        console.log(xx)
+
+        xx = mainWindow.object_value.getValue(3)
+        console.log(xx)
+
     }
 
         function getRandomInt(max)

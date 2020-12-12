@@ -135,4 +135,33 @@ Item
         object_value2.setNumberOfVisibleElements(numberOfVisibleElements)
         object_value3.setNumberOfVisibleElements(numberOfVisibleElements)
     }
+
+    function getValue(element = 0)
+    {
+        var val1 = object_value1.getValue()
+        var val2 = object_value2.getValue()
+        var val3 = object_value3.getValue()
+
+        var values_array = [val1, val2, val3];
+
+        if (element === 0)
+        {
+            return values_array
+        }
+        else
+        if (element === 1)
+        {
+            return values_array[0]
+        }
+        else if (element === 2)
+        {
+            return values_array[1]
+        }
+        else if (element === 3)
+        {
+            return values_array[2]
+        }
+
+        return null
+    }
 }
