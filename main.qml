@@ -5,7 +5,7 @@ import QtQuick.Controls 2.15
 Window
 {
     id: mainWindow
-    width: 300
+    width: 500
     height: 100
     x: 100
     y: 100

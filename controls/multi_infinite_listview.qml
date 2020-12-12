@@ -14,6 +14,10 @@ Item
     property var object_value2: component_value.createObject(mainWindow)
     property var object_value3: component_value.createObject(mainWindow)
 
+    property var object_separator1: component_value.createObject(mainWindow)
+    property var object_separator2: component_value.createObject(mainWindow)
+
+
     Rectangle
     {
         anchors.fill: parent
@@ -28,23 +32,42 @@ Item
         object_value2.parent = main_multi_listview
         object_value3.parent = main_multi_listview
 
+        object_separator1.parent = main_multi_listview
+        object_separator2.parent = main_multi_listview
+
+
         object_value1.object_name = "object_value1"
         object_value2.object_name = "object_value2"
         object_value3.object_name = "object_value3"
 
-        object_value1.width = Qt.binding(() => (width/3))
+        object_separator1.object_name = "object_object_separator1"
+        object_separator2.object_name = "object_object_separator2"
+
+        object_value1.width = Qt.binding(() => (width * 0.3))
         object_value1.height = Qt.binding(() => height)
-        object_value2.width = Qt.binding(() => width/3)
+        object_value2.width = Qt.binding(() => width * 0.3)
         object_value2.height = Qt.binding(() => height)
-        object_value3.width = Qt.binding(() => width/3)
+        object_value3.width = Qt.binding(() => width * 0.3)
         object_value3.height = Qt.binding(() => height)
+
+        object_separator1.width = Qt.binding(() => (width * 0.05))
+        object_separator1.height = Qt.binding(() => height)
+        object_separator2.width = Qt.binding(() => (width * 0.05))
+        object_separator2.height = Qt.binding(() => height)
 
         object_value1.x = 0
         object_value1.y = 0
-        object_value2.x = Qt.binding(() => object_value1.width)
+        object_value2.x = Qt.binding(() => object_value1.width + object_separator1.width)
         object_value2.y = 0
-        object_value3.x = Qt.binding(() => object_value1.width + object_value2.width)
+        object_value3.x = Qt.binding(() => object_value1.width + object_separator1.width + object_value2.width + object_separator2.width)
         object_value3.y = 0
+
+        object_separator1.x = Qt.binding(() => object_value1.width)
+        object_separator1.y = 0
+
+        object_separator2.x = Qt.binding(() => object_value1.width + object_separator1.width + object_value2.width)
+        object_separator2.y = 0
+
 
         object_value1.setNumberOfVisibleElements(1)
         object_value1.setValues(0, 23)
@@ -54,6 +77,11 @@ Item
 
         object_value3.setNumberOfVisibleElements(1)
         object_value3.setValues(0, 59)
+
+        object_separator1.setNumberOfVisibleElements(1)
+        object_separator2.setNumberOfVisibleElements(1)
+        object_separator1.setCustomValue(":")
+        object_separator2.setCustomValue(":")
     }
 
     function setValues(element, first = 0, last = 59, fill_length = 2, fill_value = '0')
