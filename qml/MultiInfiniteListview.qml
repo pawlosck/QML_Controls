@@ -204,4 +204,38 @@ Item
     {
         external_border.border = size
     }
+
+    function setGradientColor(element, color = 'gray')
+    {
+        if (element === 0)
+        {
+            object_value1.setGradientColor(color)
+            object_value2.setGradientColor(color)
+            object_value3.setGradientColor(color)
+
+            object_separator1.setGradientColor(color)
+            object_separator2.setGradientColor(color)
+        }
+        else
+        if (element === 1)
+        {
+            object_value1.setGradientColor(color)
+        }
+        else if (element === 2)
+        {
+            object_separator1.setGradientColor(color)
+        }
+        else if (element === 3)
+        {
+            object_value2.setGradientColor(color)
+        }
+        else if (element === 4)
+        {
+            object_separator2.setGradientColor(color)
+        }
+        else if (element === 5)
+        {
+            object_value3.setGradientColor(color)
+        }
+    }
 }
