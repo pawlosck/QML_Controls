@@ -20,6 +20,7 @@ Item
 
     Rectangle
     {
+        id: external_border
         anchors.fill: parent
         color: "transparent"
         border.width: 1
@@ -163,5 +164,44 @@ Item
         }
 
         return null
+    }
+
+    function setInternalBorderSize(element, size = 0)
+    {
+        if (element === 0)
+        {
+            object_value1.setBorderSize(size)
+            object_value2.setBorderSize(size)
+            object_value3.setBorderSize(size)
+
+            object_separator1.setBorderSize(size)
+            object_separator2.setBorderSize(size)
+        }
+        else
+        if (element === 1)
+        {
+            object_value1.setBorderSize(size)
+        }
+        else if (element === 2)
+        {
+            object_separator1.setBorderSize(size)
+        }
+        else if (element === 3)
+        {
+            object_value2.setBorderSize(size)
+        }
+        else if (element === 4)
+        {
+            object_separator2.setBorderSize(size)
+        }
+        else if (element === 5)
+        {
+            object_value3.setBorderSize(size)
+        }
+    }
+
+    function setBorderSize(size = 0)
+    {
+        external_border.border = size
     }
 }
