@@ -24,7 +24,6 @@ Item
         anchors.fill: parent
         color: "transparent"
         border.width: 1
-        border.color: "blue"
     }
 
     Component.onCompleted:
