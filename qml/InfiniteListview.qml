@@ -62,6 +62,7 @@ Item
             width: listviewID.width
             x: 0
             y: 0
+            color: "transparent"
 
             Text
             {
