@@ -59,6 +59,13 @@ Item
                 object_value1_textfield.selectAll()
             }
         }
+
+        onEditingFinished:
+        {
+            object_value1.setValue(parseInt(object_value1_textfield.text))
+            object_value1.visible = true
+            object_value1_textfield.visible = false
+        }
     }
 
     TextField
@@ -102,6 +109,13 @@ Item
                 object_value2_textfield.selectAll()
             }
         }
+
+        onEditingFinished:
+        {
+            object_value2.setValue(parseInt(object_value2_textfield.text))
+            object_value2.visible = true
+            object_value2_textfield.visible = false
+        }
     }
 
     TextField
@@ -144,6 +158,13 @@ Item
                 object_value3_textfield.focus = true
                 object_value3_textfield.selectAll()
             }
+        }
+
+        onEditingFinished:
+        {
+            object_value3.setValue(parseInt(object_value3_textfield.text))
+            object_value3.visible = true
+            object_value3_textfield.visible = false
         }
     }
 
