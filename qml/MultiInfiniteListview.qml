@@ -1,8 +1,9 @@
-import QtQuick 2.3
+import QtQuick 2.12
 import QtQuick.Window 2.15
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.15
 import QtQml 2.12
+
 
 Item
 //Window
@@ -17,6 +18,114 @@ Item
     property var object_separator1: component_value.createObject(mainWindow)
     property var object_separator2: component_value.createObject(mainWindow)
 
+    TextField
+    {
+        id: object_value1_textfield
+
+        x: object_value1.x
+        y: object_value1.y
+        implicitWidth: object_value1.width
+        implicitHeight: object_value1.height
+        visible: true
+        clip: true
+        text: "11"
+        horizontalAlignment: TextInput.AlignHCenter
+        verticalAlignment: TextInput.AlignVCenter
+        padding: 0      //pusta przestrzen miedzy tekstem, a obramowaniem
+        font.pixelSize: height * 0.8
+
+        background: Rectangle
+        {
+            anchors.fill: parent
+            color: "transparent"
+//            color: "gray"
+            border.width: 0
+        }
+
+        MouseArea
+        {
+            anchors.fill: parent
+            acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+
+            onDoubleClicked:
+            {
+                object_value1.visible = true
+                object_value1_textfield.visible = false
+            }
+        }
+    }
+
+    TextField
+    {
+        id: object_value2_textfield
+
+        x: object_value2.x
+        y: object_value2.y
+        implicitWidth: object_value2.width
+        implicitHeight: object_value2.height
+        visible: false
+        clip: true
+        text: "11"
+        horizontalAlignment: TextInput.AlignHCenter
+        verticalAlignment: TextInput.AlignVCenter
+        padding: 0      //pusta przestrzen miedzy tekstem, a obramowaniem
+        font.pixelSize: height * 0.8
+
+        background: Rectangle
+        {
+            anchors.fill: parent
+            color: "transparent"
+            border.width: 0
+        }
+
+        MouseArea
+        {
+            anchors.fill: parent
+            acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+
+            onDoubleClicked:
+            {
+                object_value2.visible = true
+                object_value2_textfield.visible = false
+            }
+        }
+    }
+
+    TextField
+    {
+        id: object_value3_textfield
+
+        x: object_value3.x
+        y: object_value3.y
+        implicitWidth: object_value3.width
+        implicitHeight: object_value3.height
+        visible: false
+        clip: true
+        text: ""
+        horizontalAlignment: TextInput.AlignHCenter
+        verticalAlignment: TextInput.AlignVCenter
+        padding: 0      //pusta przestrzen miedzy tekstem, a obramowaniem
+        font.pixelSize: height * 0.8
+
+        background: Rectangle
+        {
+            anchors.fill: parent
+            color: "transparent"
+            border.width: 0
+        }
+
+        MouseArea
+        {
+            anchors.fill: parent
+            acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+
+            onDoubleClicked:
+            {
+                object_value3.visible = true
+                object_value3_textfield.visible = false
+            }
+        }
+    }
 
     Rectangle
     {
@@ -82,6 +191,40 @@ Item
         object_separator2.setNumberOfVisibleElements(1)
         object_separator1.setCustomValue(":")
         object_separator2.setCustomValue(":")
+
+
+        object_value1.visible = true
+        object_value2.visible = true
+        object_value3.visible = true
+
+        object_value1_textfield.visible = false
+        object_value2_textfield.visible = false
+        object_value3_textfield.visible = false
+
+        object_value1_textfield.forceActiveFocus()
+        object_value2_textfield.forceActiveFocus()
+        object_value3_textfield.forceActiveFocus() //Wymusza migajacy kursor
+
+        object_value1.signal_double_clicked.connect(function ()
+        {
+            object_value1.visible = false
+            object_value1_textfield.visible = true
+            object_value1_textfield.focus = true
+        })
+
+        object_value2.signal_double_clicked.connect(function ()
+        {
+            object_value2.visible = false
+            object_value2_textfield.visible = true
+            object_value2_textfield.focus = true
+        })
+
+        object_value3.signal_double_clicked.connect(function ()
+        {
+            object_value3.visible = false
+            object_value3_textfield.visible = true
+            object_value3_textfield.focus = true
+        })
     }
 
     function setValues(element, first = 0, last = 59, fill_length = 2, fill_value = '0')
