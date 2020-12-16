@@ -7,6 +7,8 @@ import QtQml 2.12
 Item
 //Window
 {
+    signal signal_double_clicked()
+
     x: 0
     y: 0
     id: mainListView
@@ -155,6 +157,12 @@ Item
         MouseArea
         {
             anchors.fill: parent
+
+            onDoubleClicked:
+            {
+                signal_double_clicked()
+            }
+
             onWheel:
             {
                 listviewID.set_values_first_time = false
