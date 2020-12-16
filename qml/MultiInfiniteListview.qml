@@ -28,7 +28,7 @@ Item
         implicitHeight: object_value1.height
         visible: true
         clip: true
-        text: "11"
+        text: ""
         horizontalAlignment: TextInput.AlignHCenter
         verticalAlignment: TextInput.AlignVCenter
         padding: 0      //pusta przestrzen miedzy tekstem, a obramowaniem
@@ -38,7 +38,6 @@ Item
         {
             anchors.fill: parent
             color: "transparent"
-//            color: "gray"
             border.width: 0
         }
 
@@ -65,7 +64,7 @@ Item
         implicitHeight: object_value2.height
         visible: false
         clip: true
-        text: "11"
+        text: ""
         horizontalAlignment: TextInput.AlignHCenter
         verticalAlignment: TextInput.AlignVCenter
         padding: 0      //pusta przestrzen miedzy tekstem, a obramowaniem
@@ -192,19 +191,22 @@ Item
         object_separator1.setCustomValue(":")
         object_separator2.setCustomValue(":")
 
-
+        //Pokaz listview
         object_value1.visible = true
         object_value2.visible = true
         object_value3.visible = true
 
+        //Ukryj obiekty TextField
         object_value1_textfield.visible = false
         object_value2_textfield.visible = false
         object_value3_textfield.visible = false
 
+        //Wymus miganie kursora. To chyba nie dziala, gdy opcja focus nie jest ustawiona na true
         object_value1_textfield.forceActiveFocus()
         object_value2_textfield.forceActiveFocus()
         object_value3_textfield.forceActiveFocus() //Wymusza migajacy kursor
 
+        //Po dwukliku na listview ukryj listview i pokaz textfield
         object_value1.signal_double_clicked.connect(function ()
         {
             object_value1.visible = false
