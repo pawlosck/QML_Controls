@@ -33,6 +33,7 @@ Item
         verticalAlignment: TextInput.AlignVCenter
         padding: 0      //pusta przestrzen miedzy tekstem, a obramowaniem
         font.pixelSize: height * 0.8
+        validator: IntValidator {}
 
         background: Rectangle
         {
@@ -75,6 +76,7 @@ Item
         verticalAlignment: TextInput.AlignVCenter
         padding: 0      //pusta przestrzen miedzy tekstem, a obramowaniem
         font.pixelSize: height * 0.8
+        validator: IntValidator {}
 
         background: Rectangle
         {
@@ -117,6 +119,7 @@ Item
         verticalAlignment: TextInput.AlignVCenter
         padding: 0      //pusta przestrzen miedzy tekstem, a obramowaniem
         font.pixelSize: height * 0.8
+        validator: IntValidator {}
 
         background: Rectangle
         {
