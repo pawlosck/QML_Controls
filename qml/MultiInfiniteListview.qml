@@ -230,6 +230,8 @@ Item
             object_value1.visible = false
             object_value1_textfield.visible = true
             object_value1_textfield.focus = true
+
+            object_value1_textfield.selectAll()
         })
 
         object_value2.signal_double_clicked.connect(function ()
@@ -237,6 +239,8 @@ Item
             object_value2.visible = false
             object_value2_textfield.visible = true
             object_value2_textfield.focus = true
+
+            object_value2_textfield.selectAll()
         })
 
         object_value3.signal_double_clicked.connect(function ()
@@ -244,6 +248,8 @@ Item
             object_value3.visible = false
             object_value3_textfield.visible = true
             object_value3_textfield.focus = true
+
+            object_value3_textfield.selectAll()
         })
     }
 
