@@ -51,6 +51,12 @@ Item
                 object_value1.visible = true
                 object_value1_textfield.visible = false
             }
+
+            onClicked:
+            {
+                object_value1_textfield.focus = true
+                object_value1_textfield.selectAll()
+            }
         }
     }
 
@@ -87,6 +93,12 @@ Item
                 object_value2.visible = true
                 object_value2_textfield.visible = false
             }
+
+            onClicked:
+            {
+                object_value2_textfield.focus = true
+                object_value2_textfield.selectAll()
+            }
         }
     }
 
@@ -122,6 +134,12 @@ Item
             {
                 object_value3.visible = true
                 object_value3_textfield.visible = false
+            }
+
+            onClicked:
+            {
+                object_value3_textfield.focus = true
+                object_value3_textfield.selectAll()
             }
         }
     }
