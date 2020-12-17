@@ -1,8 +1,10 @@
 import QtQuick 2.3
 import QtQuick.Window 2.15
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQml 2.12
+
+//https://doc.qt.io/qt-5/qtquickcontrols2-differences.html - migracja z QtQuick.Controls 1 na QtQuick.Controls 2
 
 Item
 //Window
